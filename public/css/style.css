@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "Yekan";
+  src: url("../fonts/Yekan.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Yekan.woff2") format("woff2"),
+    url("../fonts/Yekan.woff") format("woff"),
+    url("../fonts/Yekan.svg#Yekan") format("svg"),
+    url("../fonts/Yekan.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IranSens";
+  src: url("../fonts/IRANSansWebFaNum.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/IRANSansWebFaNum.woff2") format("woff2"),
+    url("../fonts/IRANSansWebFaNum.woff") format("woff"),
+    url("../fonts/IRANSansWebFaNum.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Caveat";
+  src: url("../fonts/Caveat-Regular.woff2") format("woff2"),
+    url("../fonts/Caveat-Regular.woff") format("woff"),
+    url("../fonts/Caveat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Yekan;
+}
+
+.menu-parent {
+  background-color: #ffffff;
+  z-index: 999;
+  display: flex;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.pricebox {
+  display: flex;
+  justify-content: space-between;
+}
+.arrow-box {
+  background-color: #ffffff;
+  opacity: 0.5;
+}
+.arrow-box:hover {
+  background-color: #ebe9e9;
+  opacity: 1;
+}
+.arrow-forward {
+  fill: #b4b4b6 !important;
+}
+/* //fresh */
+
+.fresh-box {
+  margin-top: 1rem;
+  background: url(/images/freshPattern.svg),
+    linear-gradient(353deg, rgba(57, 174, 0, 0.1), rgba(243, 243, 243, 0) 100%);
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+.fresh-item-title img {
+  margin-right: 1rem;
+}
+.fresh-discount-box {
+  background-color: #39ae00;
+  width: 100px;
+}
+.fresh-items-box div.end {
+  margin-right: auto;
+  justify-self: end;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
