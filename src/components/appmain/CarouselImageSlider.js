@@ -25,27 +25,6 @@ export function CarouselImageSlider() {
   return (
     <>
       <Container ref={container}>
-        {/* <ButtonBox
-          parentheight={container.current.clientHeight}
-          onMouseOver={() => {
-            setMouseOver(true);
-          }}
-          onMouseOut={() => {
-            setMouseOver(false);
-          }}
-        >
-          {data.map((d, index) => {
-            return (
-              <DotIcon
-                active={index === counter ? true : false}
-                key={index}
-                onClick={() => {
-                  setCounter(index);
-                }}
-              />
-            );
-          })}
-        </ButtonBox> */}
         <img style={{ width: "100%" }} src={data[counter]} />
         <ButtonBox
           parentheight={container.current.clientHeight}

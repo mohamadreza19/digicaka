@@ -29,7 +29,18 @@
   font-style: normal;
   font-display: swap;
 }
-
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+span {
+  font-family: inherit;
+}
 * {
   padding: 0;
   margin: 0;
@@ -82,4 +93,36 @@
   justify-content: center;
   align-content: center;
   flex-direction: row;
+}
+
+.mt-4rem {
+  margin-top: 4rem;
+}
+.w-72 {
+  width: 72%;
+}
+.w-28 {
+  width: 28%;
+}
+.mt-1rm {
+  margin-top: 1rem;
+}
+.mrl {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.w-fit-content {
+  width: fit-content;
+}
+.fill-yellow {
+  fill: #f9a825 !important;
+}
+.text-blue-info {
+  color: #54c1d6;
+}
+.fill-green {
+  fill: #2a6b09 !important;
+}
+.fill-gray {
+  fill: #a1a3a8 !important;
 }

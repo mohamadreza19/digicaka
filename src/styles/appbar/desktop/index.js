@@ -21,9 +21,8 @@ import {
   LocationOnOutlined,
 } from "@mui/icons-material";
 export const RootContainer = styled(Box)(() => ({
-  // display:'flex',
   width: "100%",
-  // justifyContent:'center',
+  borderBottom: "1px solid gray",
 }));
 
 export const ContainerRowOne = styled(Box)(() => ({
