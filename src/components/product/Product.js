@@ -1,6 +1,7 @@
 import {
   Balance,
   BarChart,
+  Done,
   Favorite,
   FormatListBulleted,
   Hail,
@@ -12,9 +13,14 @@ import {
   ThumbUpOffAlt,
 } from "@mui/icons-material";
 import {
+  Avatar,
   Box,
   Divider,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
   styled,
   Toolbar,
   Tooltip,
@@ -46,13 +52,30 @@ export default function Product() {
   const [product, SetProduct] = useImmer({
     category: ["init", "init", "init"],
     name: ["init", "init"],
+    availableColors: [["init,init"]],
+    availableSizes: [["init"]],
+    property: {
+      init: "init",
+    },
   });
 
-  useEffect(() => {
-    const matched = spacialProducts.find((item) => item.name[0] === name);
-    SetProduct(() => matched);
-    console.log(matched);
-  }, [spacialProducts.length > 0]);
+  const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
+  useEffect(
+    function fillingPoroduct() {
+      const matched = spacialProducts.find((item) => item.name[0] === name);
+      SetProduct(() => matched);
+
+      if (matched) {
+        // [0][1] for have first ficked color
+        "availableColors" in matched &&
+          setSelectedColorOrSize(() => matched.availableColors[0][1]);
+        // [0][1] for have first ficked size
+        "availableSizes" in matched &&
+          setSelectedColorOrSize(() => matched.availableSizes[0]);
+      }
+    },
+    [spacialProducts.length > 0]
+  );
 
   const StartGrid = () => {
     return (
@@ -118,10 +141,110 @@ export default function Product() {
       marginLeft: "4px",
     }));
     //
+    const ColorBox = styled(Box)(({ isone, background }) => ({
+      backgroundColor: background,
+      width: "30px",
+      height: "30px",
+      minHeight: "30px",
+      borderRadius: "50%",
+      cursor: "pointer",
+      marginLeft: isone != "true" ? "1rem" : "0",
+      display: "flex",
+      justifyContent: "center",
+    }));
+    const EitherSizeOrColorBox = () => {
+      if ("availableColors" in product) {
+        return (
+          <div
+            id="ColorBox"
+            className="mt-4 w-100 d-flex flex-column justify-start"
+          >
+            <div className="d-flex  w-100 justify-content-start">
+              <Typography variant="h6">رنگ : {selectedColorOrSize}</Typography>
+            </div>
 
+            <div className="w-100 d-flex justify-content-start mt-1rm">
+              {product.availableColors.map((item, index) => {
+                // ['colorCode','colorName']
+
+                return (
+                  <Tooltip key={index} placement="bottom" title={item[1]}>
+                    <ColorBox
+                      onClick={() => setSelectedColorOrSize(item[1])}
+                      isone={index == 0 ? "true" : ""}
+                      background={item[0]}
+                    >
+                      {selectedColorOrSize === item[1] ? <Done /> : null}
+                    </ColorBox>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </div>
+        );
+      } else if ("availableSizes" in product) {
+        return (
+          <div className="mt-4 w-100 d-flex justify-start flex-column">
+            <div className="d-flex  w-100 justify-content-start">
+              <PersionNumber variant="h6">
+                سایز: {selectedColorOrSize}
+              </PersionNumber>
+            </div>
+
+            <Select
+              className="w-10 w-25 mt-1rm"
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={selectedColorOrSize}
+              onChange={(event) => {
+                setSelectedColorOrSize(event.target.value);
+              }}
+            >
+              {product.availableSizes.map((item, index) => {
+                return (
+                  <MenuItem key={index} value={item}>
+                    <PersionNumber variant="body1">{item}</PersionNumber>
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </div>
+        );
+      } else return null;
+    };
+    const PropertyBox = () => {
+      console.log(product.property);
+      if ("property" in product) {
+        const keyAndValue = Object.entries(product.property);
+
+        return (
+          <div
+            id="PropertyBox"
+            className="mt-4 w-100 d-flex flex-column justify-start"
+          >
+            {" "}
+            <Typography className="font-weight-bold mb-1rm" variant="h6">
+              ویژگی ها{" "}
+            </Typography>
+            {keyAndValue.map((item, index) => {
+              return (
+                <Typography key={index} className=" mb-1rm" variant="body2">
+                  <span className="text-muted m">
+                    {item[0].replaceAll("-", " ")}
+                  </span>
+                  <span className="ms-2 me-2">:</span>
+                  <span className="font-weight-bold">{item[1]}</span>
+                </Typography>
+              );
+            })}
+          </div>
+        );
+      }
+      return null;
+    };
     return (
       <div className="d-flex w-100  ">
-        <div className="w-72 ">
+        <div className="w-72">
           <NavBox className="w-100 d-flex justify-content-start">
             <Link to={"/"}>
               <Nav variant="body1">محصول</Nav>
@@ -177,6 +300,7 @@ export default function Product() {
               </ScoreItemBox>
             </a>
           </div>
+
           <div
             id="PecentPeopleLikeBox"
             className="mt-2 w-100 d-flex justify-start"
@@ -196,12 +320,14 @@ export default function Product() {
               <Info className="fill-gray " fontSize="small" />
             </Tooltip>
           </div>
+          <EitherSizeOrColorBox />
+          <PropertyBox />
         </div>
         <div className="w-28">slm dobareh</div>
       </div>
     );
   };
-  console.log(product.name[1]);
+
   return (
     <RootContiner>
       <NavStateBox>

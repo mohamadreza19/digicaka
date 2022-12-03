@@ -1,5 +1,6 @@
 import { MobileFriendly } from "@mui/icons-material";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UiContext } from "../../contextApi/uiContext";
 import {
   ActionButton,
@@ -26,7 +27,9 @@ export function Desktop() {
     <RootContainer>
       <ContainerRowOne>
         <LogoBox>
-          <Logo src={"/images/logo.svg"} />
+          <Link to={"/"}>
+            <Logo src={"/images/logo.svg"} />
+          </Link>
         </LogoBox>
         <SearchBox>
           <SearchBox label="جستجو" variant="filled" />
