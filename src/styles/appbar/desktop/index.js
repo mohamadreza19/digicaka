@@ -111,9 +111,8 @@ export const ActionButton = () => {
       <MyBox>
         <MyLogin />
         <span className="ms-2">ورود</span>
-        <span className="ms-2 me-2">|</span>
-        <span className="">ثبت نام</span>
-      
+        <span className="ms-2 me-2">| </span>
+        <span className=""> ثبت نام</span>
       </MyBox>
       <DividerBox>
         <MyDivider orientation="vertical" flexItem />
@@ -203,7 +202,7 @@ export const MainButtons = (props) => {
 export const EndListBox = styled(Box)(() => ({
   marginLeft: "auto",
 }));
-export const EndButtons = (props) => {
+export const EndButtons = ({setIsOpenDialog,selectedCity}) => {
   const Parent = styled(Box)(() => ({
     display: "flex",
     justifyContent: "space-between",
@@ -222,12 +221,43 @@ export const EndButtons = (props) => {
     fontWeight: "200",
     color: "#62666D",
   }));
+ const SelectedCityBox= ()=>{
+  let mapped = null
+  const parsed= JSON.parse(selectedCity)
+  
+  mapped= selectedCity !== "init"&&
+    
+     (<Content>
+      <span className="me-2">ارسال به</span>
+      {parsed.city}
+      ،
+      {parsed.subCity}
+    </Content>
+    )
+    
+    
+  
+  return<>{mapped? mapped: <Content>انتخاب شهر</Content>}</>
+   
+  }
 
   return (
     <Parent>
-      <MyBox className="mame">
+      <MyBox className=""
+      onClick={setIsOpenDialog}
+      >
         <LocationOnOutlined sx={{ color: "#62666D" }} fontSize="3px" />
-        <Content variant="body1">لطفا شهر خود را انتخاب کنید</Content>
+        {/* <Content variant="body1">
+         {selectedCity !== "init" &&
+          <span>ارسال به</span>
+        } 
+          
+         
+         
+         " لطفا شهر خود را انتخاب کنید"
+         
+          </Content> */}
+          <SelectedCityBox/>
       </MyBox>
     </Parent>
   );

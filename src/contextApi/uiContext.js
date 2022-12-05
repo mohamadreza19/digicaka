@@ -5,4 +5,8 @@ export const UiContext = createContext({
   setOpenMenu: () => {},
   setSubItem: () => {},
   spacialProduct: {},
+  cities: [],
+  setCities: () => [],
+  selectedCity: {},
+  setCelectedCity: () => {},
 });

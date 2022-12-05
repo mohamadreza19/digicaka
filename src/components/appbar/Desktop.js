@@ -1,6 +1,9 @@
-import { MobileFriendly } from "@mui/icons-material";
-import { useContext } from "react";
+import { ArrowBackIosNew, Close, MobileFriendly } from "@mui/icons-material";
+import { Dialog, DialogTitle, Divider, Typography } from "@mui/material";
+import { useContext, useState } from "react";
+import useLocalStorage from "react-use-localstorage";
 import { Link } from "react-router-dom";
+import { useImmer } from "use-immer";
 import { UiContext } from "../../contextApi/uiContext";
 import {
   ActionButton,
@@ -21,8 +24,115 @@ import {
 } from "../../styles/appbar/desktop";
 import { MenuItems } from "./MenuItems";
 export function Desktop() {
-  const { openMenuItems, setOpenMenu } = useContext(UiContext);
+  const { openMenuItems, setOpenMenu, cities} =
+    useContext(UiContext);  
+    
+  const [subCities, seSubCities] = useImmer({
+    city:"init",
+    subCity:["init"]
+  });
+  const [isOpenDialog, setIsOpenDialog] = useImmer(false);
+  //LOCAL Storge
 
+  const [selectedCity,setSelectedCity] = useLocalStorage("selected-city","init")
+  //
+
+  const CitiesDialog = (props) => {
+    
+    const { onClose, open } = props;
+    const DialogTitleBox = () => {
+      return (
+        <div id="DialogTitle">
+          <Typography variant="body1" className="font-weight-bold ">
+            انتخاب شهر
+          </Typography>
+         <span onClick={()=>setIsOpenDialog(false)}> <Close className="cur-pointer"/></span>
+        </div>
+      );
+    };
+    const CitiesBox = () => {
+      return (
+        <div id="CitiesBox" className="mt-1rm">
+          {subCities.city === "init"
+            ? cities.map((city, index) => {
+              
+                return (
+                  <section
+                    key={index}
+                    className=" d-flex justify-content-space-between"
+                    onClick={() => {
+                      seSubCities((draft) => {
+                        draft.city=city.city
+                        draft.subCity=city.subCities
+                      });
+                     
+                    }}
+                  >
+                    <Typography variant="body1 font-weight-bold">
+                      {city.city}
+                    </Typography>
+
+                    <ArrowBackIosNew fontSize="small" />
+                  </section>
+                );
+              })
+            : subCities.subCity.map((subCity, index) => {
+            
+                return (
+                  <section
+                    key={index}
+                    className=" d-flex justify-content-space-between"
+                    onClick={() => {
+                      
+                      setSelectedCity(
+                        JSON.stringify({
+                          city:subCities.city,
+                          subCity:subCity
+                        })
+                      )
+                      
+                      setIsOpenDialog(false)
+                    }}
+                  >
+                    <Typography variant="body1 font-weight-bold">
+                      {subCity}
+                    </Typography>
+
+                    <ArrowBackIosNew fontSize="small" />
+                  </section>
+                );
+              })}
+        </div>
+      );
+    };
+    return (
+      <Dialog open={open}>
+        <div id="DialogBox">
+          <DialogTitleBox />
+          <div className="divider"></div>
+          {subCities.city !== "init" ? (
+            <span
+              onClick={() => {
+                seSubCities((draft)=>{
+                return {
+                  city:'init',
+                  subCity:['init']
+                 }
+                });
+
+              }}
+              className="cur-pointer"
+            >
+              باز گشت به انتخاب شهر
+            </span>
+          ) : (
+            "مکان یاب خودکار"
+          )}
+          <CitiesBox />
+        </div>
+      </Dialog>
+    );
+  };
   return (
     <RootContainer>
       <ContainerRowOne>
@@ -39,7 +149,7 @@ export function Desktop() {
           <ActionButton />
         </ActionButtonBox>
       </ContainerRowOne>
-      <ContainerRowTwo>
+      <ContainerRowTwo className="mb-3">
         <ListBox>
           <EachItemListBox
             onMouseEnter={() => setOpenMenu(true)}
@@ -53,7 +163,8 @@ export function Desktop() {
           </EachItemListBox>
         </ListBox>
         <EndListBox>
-          <EndButtons />
+          <EndButtons setIsOpenDialog={()=>setIsOpenDialog(true)} selectedCity={selectedCity}/>
+          <CitiesDialog open={isOpenDialog} />
         </EndListBox>
       </ContainerRowTwo>
     </RootContainer>

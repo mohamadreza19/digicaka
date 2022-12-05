@@ -9,6 +9,7 @@ import AppMain from "./components/appmain/AppMain";
 import { Route, Routes } from "react-router-dom";
 import Product from "./components/product/Product";
 import { get_spacialProducts } from "./services/spacialProduct";
+import { get_cities } from "./services/cities";
 
 export default function App() {
   const [openMenuItems, setOpenMenu] = useState(false);
@@ -25,7 +26,11 @@ export default function App() {
     icon: "Smartphone",
   });
   const [spacialProducts, setSpacialProducts] = useState([]);
-
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setCelectedCity] = useState({
+    city:'init',
+    subCity:'init'
+  });
   useEffect(function () {
     const fetchSpacialProduct = () => {
       //loading
@@ -33,6 +38,10 @@ export default function App() {
       const fetched = get_spacialProducts();
 
       setSpacialProducts(fetched);
+
+      const fetechedCities = get_cities();
+      fetechedCities && setCities(fetechedCities);
+
       setLoading(false);
       //loaded
     };
@@ -49,6 +58,10 @@ export default function App() {
             subItem,
             setSubItem,
             spacialProducts,
+            cities,
+            setCities,
+            selectedCity,
+            setCelectedCity,
           }}
         >
           <Container>
