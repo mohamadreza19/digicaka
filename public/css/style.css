@@ -132,9 +132,42 @@ span {
 .mb-1rm {
   margin-bottom: 1rem !important;
 }
+
 .font-weight-bold {
   font-weight: bold !important;
 }
-.font-weight-bold {
-  font-weight: bold !important;
+#DialogBox {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+#DialogTitle {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: 50px;
+  padding: 1rem 0;
+}
+.cur-pointer {
+  cursor: pointer;
+}
+.divider {
+  width: 90%;
+  height: 1px;
+  background-color: #ebe9e9;
+}
+#CitiesBox {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+#CitiesBox section {
+  cursor: pointer;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ebe9e9;
+}
+.justify-content-space-between {
+  justify-content: space-between;
 }

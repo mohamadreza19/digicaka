@@ -1,6 +1,8 @@
-import { MobileFriendly } from "@mui/icons-material";
-import { useContext } from "react";
+import { ArrowBackIosNew, Close, MobileFriendly } from "@mui/icons-material";
+import { Dialog, DialogTitle, Divider, Typography } from "@mui/material";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useImmer } from "use-immer";
 import { UiContext } from "../../contextApi/uiContext";
 import {
   ActionButton,
@@ -21,8 +23,87 @@ import {
 } from "../../styles/appbar/desktop";
 import { MenuItems } from "./MenuItems";
 export function Desktop() {
-  const { openMenuItems, setOpenMenu } = useContext(UiContext);
+  const { openMenuItems, setOpenMenu, cities, selectedCity, setCelectedCity } =
+    useContext(UiContext);
+  const [subCities, seSubCities] = useImmer(["init"]);
 
+  const CitiesDialog = (props) => {
+    console.log(subCities);
+    const { onClose, open } = props;
+    const DialogTitleBox = () => {
+      return (
+        <div id="DialogTitle">
+          <Typography variant="body1" className="font-weight-bold ">
+            انتخاب شهر
+          </Typography>
+          <Close className="cur-pointer" />
+        </div>
+      );
+    };
+    const CitiesBox = () => {
+      return (
+        <div id="CitiesBox" className="mt-1rm">
+          {subCities[0] === "init"
+            ? cities.map((cty, index) => {
+                return (
+                  <section
+                    key={index}
+                    className=" d-flex justify-content-space-between"
+                    onClick={() => {
+                      seSubCities(() => cty.subCities);
+                      console.log(cty.subCities);
+                    }}
+                  >
+                    <Typography variant="body1 font-weight-bold">
+                      {cty.city}
+                    </Typography>
+
+                    <ArrowBackIosNew fontSize="small" />
+                  </section>
+                );
+              })
+            : subCities.map((subCity, index) => {
+                return (
+                  <section
+                    key={index}
+                    className=" d-flex justify-content-space-between"
+                    onClick={() => {
+                      seSubCities(() => subCity);
+                    }}
+                  >
+                    <Typography variant="body1 font-weight-bold">
+                      {subCity}
+                    </Typography>
+
+                    <ArrowBackIosNew fontSize="small" />
+                  </section>
+                );
+              })}
+        </div>
+      );
+    };
+    return (
+      <Dialog open={open}>
+        <div id="DialogBox">
+          <DialogTitleBox />
+          <div className="divider"></div>
+          {subCities[0] !== "init" ? (
+            <span
+              onClick={() => {
+                seSubCities(["init"]);
+              }}
+              className="cur-pointer"
+            >
+              باز گشت به انتخاب شهر
+            </span>
+          ) : (
+            "مکان یاب خودکار"
+          )}
+          <CitiesBox />
+        </div>
+      </Dialog>
+    );
+  };
   return (
     <RootContainer>
       <ContainerRowOne>
@@ -39,7 +120,7 @@ export function Desktop() {
           <ActionButton />
         </ActionButtonBox>
       </ContainerRowOne>
-      <ContainerRowTwo>
+      <ContainerRowTwo className="mb-3">
         <ListBox>
           <EachItemListBox
             onMouseEnter={() => setOpenMenu(true)}
@@ -54,6 +135,7 @@ export function Desktop() {
         </ListBox>
         <EndListBox>
           <EndButtons />
+          <CitiesDialog open={true} />
         </EndListBox>
       </ContainerRowTwo>
     </RootContainer>
