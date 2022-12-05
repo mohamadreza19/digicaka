@@ -107,6 +107,12 @@ span {
 .mt-1rm {
   margin-top: 1rem;
 }
+.mt-2rm {
+  margin-top: 2rem !important;
+}
+.mt-3rm {
+  margin-top: 3rem !important;
+}
 .mrl {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -126,6 +132,9 @@ span {
 .fill-gray {
   fill: #a1a3a8 !important;
 }
+.bg-gray{
+  background-color:  #F7F7F7 !important;;
+}
 .h-40px {
   height: 40px !important;
 }
@@ -137,4 +146,12 @@ span {
 }
 .font-weight-bold {
   font-weight: bold !important;
+}
+.border-top{
+  border-top: 1px solid #a1a3a8 ;
+
+}
+.border-bottom{
+ 
+  border-bottom: 1px solid #a1a3a8 ;
 }

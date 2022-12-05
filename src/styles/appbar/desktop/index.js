@@ -110,7 +110,10 @@ export const ActionButton = () => {
     <Div>
       <MyBox>
         <MyLogin />
-        ورود | ثبت نام
+        <span className="ms-2">ورود</span>
+        <span className="ms-2 me-2">|</span>
+        <span className="">ثبت نام</span>
+      
       </MyBox>
       <DividerBox>
         <MyDivider orientation="vertical" flexItem />

@@ -1,3 +1,4 @@
+
 import {
   Balance,
   BarChart,
@@ -10,6 +11,7 @@ import {
   Share,
   Star,
   Store,
+  StoreMallDirectory,
   ThumbUpOffAlt,
 } from "@mui/icons-material";
 import {
@@ -242,6 +244,18 @@ export default function Product() {
       }
       return null;
     };
+    const StroreNameBox = () =>{
+      return (
+        <div className="w-100 d-flex    ms-3 me-3 border-top border-bottom">
+              <div className="w-100 d-flex justify-start align-items-end">
+              <StoreMallDirectory />
+              </div>
+              <div className="w-100 d-flex justify-center align-items-center">
+              <Typography>پوشاک </Typography>
+              </div>
+              </div>
+      )
+    }
     return (
       <div className="d-flex w-100  ">
         <div className="w-72">
@@ -323,7 +337,18 @@ export default function Product() {
           <EitherSizeOrColorBox />
           <PropertyBox />
         </div>
-        <div className="w-28">slm dobareh</div>
+        <div className="w-28">
+          <div 
+          id="SellerBox"
+          className="w-100  mt-2rm ">
+            <div className="d-flex w-100  flex-column  ">
+              <div className=" d-flex justify-content-start  mt-3rm ms-3 me-3 border-bottom">
+              <Typography className="font-weight-bold " variant="body2">فروشنده</Typography>
+              </div>
+             <StroreNameBox/>
+            </div>
+          </div>
+        </div>
       </div>
     );
   };
