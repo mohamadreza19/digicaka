@@ -79,3 +79,39 @@ export const InfoEndBox = styled(Box)(() => ({
   // width: "20%",
   backgroundColor: "blue",
 }));
+
+// END grid
+export const EndGridColumnOne = styled(Box)(() => ({
+ width:'55%'
+}));
+export const EndGridColumnTwo = styled(Box)(() => ({
+  width:'45%',
+  margin:'4rem 0 0 1rem',
+          border:'1px solid #E0E0E2',
+          borderRadius:'8px'
+ }));
+ export const EGCT_SellerInfoBox = styled(Box)(() => ({
+  width:'100%',
+  // margin:'1rem'
+  padding:'1rem'
+ }));
+ export const EGCT_SellerInfo_Item = styled(Box)(() => ({
+   width:"100%",
+  justifyContent:'center',
+  flexDirection:'column',
+  padding:'1rem'
+}));
+
+ export const EGCT_SellerInfoRowOne = styled(Box)(() => ({
+   
+}));
+export const EGCT_SellerInfoRowTow = styled(Box)(() => ({
+   
+}));
+export const EGCT_SellerInfoRowThree = styled(Box)(() => ({
+   
+}));
+export const PersionNumber_v2 = styled(Typography)(() => ({
+   fontFamily:'IranSens',
+  
+}));

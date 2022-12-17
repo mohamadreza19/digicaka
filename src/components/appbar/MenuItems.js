@@ -124,7 +124,7 @@ const LeftSubList = ({ subData }) => {
     marginLeft: "0.5rem",
     "&:hover": {
       cursor: "pointer",
-      color: "#ED1C24",
+      color: "#ED1C24 !important",
     },
   }));
   const ColoredLine = styled(Divider)(() => ({
@@ -143,7 +143,7 @@ const LeftSubList = ({ subData }) => {
 
   const KeyboardArrowLeft = Icons["KeyboardArrowLeft"];
   return (
-    <MyBox>
+    <MyBox >
       <TitleBox>
         <Title variant="body2">
           همه محصولات {subData.title} <KeyboardArrowLeft />{" "}
@@ -186,7 +186,7 @@ export function MenuItems() {
       return (
         <ListItemMenuBtn onMouseEnter={() => setSubItem(d)} key={index}>
           <IconBox>
-            <CustomIcon />
+            <CustomIcon className="fill-red" />
           </IconBox>
           <Title variant="body2">{d.title}</Title>
         </ListItemMenuBtn>

@@ -64,18 +64,8 @@ export const HandllyCarouselBox = styled(Box)(() => ({}));
 export const HandllyItemsBox = styled(Box)(() => ({
   width: "99.70%",
   height: "80%",
-  display: "flex",
-
-  /* position: relative; */
-  overflow: "hidden",
-  justifyContent: "left",
-  alignItems: "center",
-  scrollBehavior: "smooth",
 }));
 export const ItemBox = styled(Box)(({ isfirst, islast }) => ({
-  width: "182px",
-  minWidth: "182px",
-  height: "200px",
   marginLeft: "2px",
   backgroundColor: "#FFFFFF",
   display: "flex",
@@ -122,7 +112,7 @@ export const Toman = styled("img")(({ src }) => ({
   src,
 }));
 export const RedPercentBox = styled(Box)(() => ({
-  backgroundColor: "#EF3C51",
+  backgroundColor: "#EF3C51 !important",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -132,7 +122,7 @@ export const RedPercentBox = styled(Box)(() => ({
 }));
 export const RedPercent = styled(Typography)(() => ({
   fontFamily: "IranSens",
-  color: "#FFFFFF",
+  color: "#FFFFFF !important",
   objectFit: "contain",
   fontSize: "0.8rem",
 }));
@@ -144,14 +134,12 @@ export const DiscountBox = styled(Box)(() => ({
 }));
 export const Discount = styled(Typography)(() => ({
   fontFamily: "IranSens",
-  color: "#c0c2c5",
+  color: "#c0c2c5 !important",
   objectFit: "contain",
   textDecoration: "line-through",
 }));
 // right item
 export const RightItemBox = styled(Box)(({ isright }) => ({
-  width: "172px",
-  minWidth: "182px",
   height: "200px",
   marginLeft: "2px",
   backgroundColor: isright ? "#EF3C51" : "#FFFFF",
@@ -178,33 +166,46 @@ export const RightItemAmaizingImg = styled("img")(({ src }) => ({
   objectFit: "contain",
 }));
 export const RightItemCaption = styled(Typography)(() => ({
-  color: "#FFFFFF",
+  color: "#FFFFFF !important",
 }));
 //Arrows
 export const RightArrowBox = styled(Box)(() => ({
   cursor: "pointer",
-  opacity: "0.5",
+  top: "20%",
   position: "absolute",
   width: "40px",
   height: "40px",
+  border: `1px solid #e8e9eb`,
   borderRadius: "50%",
-  left: "24%",
+  left: "0.5%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  zIndex: "2",
+  backgroundColor: "#FFFFFF !important",
+  backgroundImage: `url("/images/right-arrow.svg")`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "40% auto",
+  backgroundPosition: "center",
 }));
 export const LeftArrowBox = styled(Box)(() => ({
   cursor: "pointer",
-  opacity: "0.5",
+  top: "20%",
+  left: "96.5%",
   position: "absolute",
   width: "40px",
   height: "40px",
+  border: `1px solid #e8e9eb`,
   borderRadius: "50%",
-  left: "24%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  left: "85%",
+  zIndex: "2",
+  backgroundColor: "#FFFFFF",
+  backgroundImage: `url("/images/left-arrow.svg")`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "40% auto",
+  backgroundPosition: "center",
 }));
 
 // Fresh

@@ -142,7 +142,7 @@ export const StartButton = (props) => {
     alignItems: "center",
     cursor: "pointer",
     "&:hover": {
-      borderBottom: "2px solid #EE384E",
+      borderBottom: "2px solid #EE384E !important",
     },
   }));
   const Content = styled(Typography)(() => ({
@@ -151,7 +151,7 @@ export const StartButton = (props) => {
   }));
 
   return (
-    <MyBox {...props}>
+    <MyBox {...props} >
       <Dehaze fontSize="3px" />
       <Content variant="body1">{props.children}</Content>
     </MyBox>
@@ -223,15 +223,15 @@ export const EndButtons = ({setIsOpenDialog,selectedCity}) => {
   }));
  const SelectedCityBox= ()=>{
   let mapped = null
- 
+  const parsed= JSON.parse(selectedCity)
   
   mapped= selectedCity !== "init"&&
     
      (<Content>
       <span className="me-2">ارسال به</span>
-      {JSON.parse(selectedCity.city)}
+      {parsed.city}
       ،
-      {JSON.parse(selectedCity.subCity)}
+      {parsed.subCity}
     </Content>
     )
     

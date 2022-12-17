@@ -1,10 +1,13 @@
 
 import {
+  ArrowBackIos,
+  AssignmentTurnedIn,
   Balance,
   BarChart,
   Done,
   Favorite,
   FormatListBulleted,
+  GppGood,
   Hail,
   Info,
   Notifications,
@@ -12,6 +15,7 @@ import {
   Star,
   Store,
   StoreMallDirectory,
+  StoreSharp,
   ThumbUpOffAlt,
 } from "@mui/icons-material";
 import {
@@ -33,6 +37,13 @@ import { Link, useParams } from "react-router-dom";
 import { useImmer } from "use-immer";
 import { UiContext } from "../../contextApi/uiContext";
 import {
+  EGCT_SellerInfoBox,
+  EGCT_SellerInfoRowOne,
+  EGCT_SellerInfoRowThree,
+  EGCT_SellerInfoRowTow,
+  EGCT_SellerInfo_Item,
+  EndGridColumnOne,
+  EndGridColumnTwo,
   InfoProduct,
   NaveStateEndItemBox,
   NavState,
@@ -40,6 +51,7 @@ import {
   NavStateEndBox,
   NavStateStartBox,
   PbStartBox,
+  PersionNumber_v2,
   ProductAction,
   ProductEndBox,
   ProductImage,
@@ -244,21 +256,10 @@ export default function Product() {
       }
       return null;
     };
-    const StroreNameBox = () =>{
-      return (
-        <div className="w-100 d-flex    ms-3 me-3 border-top border-bottom">
-              <div className="w-100 d-flex justify-start align-items-end">
-              <StoreMallDirectory />
-              </div>
-              <div className="w-100 d-flex justify-center align-items-center">
-              <Typography>پوشاک </Typography>
-              </div>
-              </div>
-      )
-    }
+
     return (
       <div className="d-flex w-100  ">
-        <div className="w-72">
+        <EndGridColumnOne>
           <NavBox className="w-100 d-flex justify-content-start">
             <Link to={"/"}>
               <Nav variant="body1">محصول</Nav>
@@ -336,19 +337,57 @@ export default function Product() {
           </div>
           <EitherSizeOrColorBox />
           <PropertyBox />
-        </div>
-        <div className="w-28">
-          <div 
+        </EndGridColumnOne>
+        <EndGridColumnTwo className="bg-gray-200">
+          <EGCT_SellerInfoBox  
           id="SellerBox"
-          className="w-100  mt-2rm ">
-            <div className="d-flex w-100  flex-column  ">
-              <div className=" d-flex justify-content-start  mt-3rm ms-3 me-3 border-bottom">
-              <Typography className="font-weight-bold " variant="body2">فروشنده</Typography>
+          className="w-100 ">
+            <EGCT_SellerInfoRowOne className="d-flex w-100  flex-column  ">
+              <EGCT_SellerInfo_Item className="  border-bottom ">
+              <p className="font-weight-bold .font-size-1_6rm">فروشنده</p>
+              <div className="d-flex mt-1rm">
+               <StoreSharp />
+               {/* sellerName */}
+               <Typography className="ms-2" variant="subtitle1">کارزین تل</Typography>
               </div>
-             <StroreNameBox/>
-            </div>
-          </div>
-        </div>
+              <div className="d-flex align-items-center  justify-content-center mt-2">
+                <PersionNumber className="color-green" variant="caption">{"100%"}</PersionNumber>
+               <Typography sx={{color:"#81858B"}} variant="caption" className="ms-md-2 ">
+                  رضایت از کالا
+               </Typography>
+               <span className="ms-2 me-2">|</span>
+               <Typography sx={{color:"#81858B"}} variant="caption">
+                  عملکرد
+               </Typography>
+               <Typography variant="caption" className="ms-md-2  color-green">
+                {"عالی"}
+               </Typography>
+              </div>
+              </EGCT_SellerInfo_Item>
+            </EGCT_SellerInfoRowOne>
+            <EGCT_SellerInfoRowTow>
+             <EGCT_SellerInfo_Item className="border-bottom">
+              <GppGood />
+              <PersionNumber className="ms-2" variant="button">
+                {'گارانتی 6 ماهه ارمان همرا ارتباط آریا'}
+              </PersionNumber>
+             </EGCT_SellerInfo_Item>
+            </EGCT_SellerInfoRowTow>
+            <EGCT_SellerInfoRowThree>
+            <EGCT_SellerInfo_Item>
+              <div className="d-flex justify-content-between">
+                <div className="d-flex">
+                <AssignmentTurnedIn className="fill-blue"/>
+              <Typography className="font-weight-bold ms-2" variant="body1">
+                {"موجود در انبار دیجی کالا"}
+              </Typography>
+                </div>
+                <ArrowBackIos fontSize="small"/>
+              </div>
+            </EGCT_SellerInfo_Item>
+            </EGCT_SellerInfoRowThree>
+          </EGCT_SellerInfoBox>
+        </EndGridColumnTwo>
       </div>
     );
   };
@@ -387,10 +426,10 @@ export default function Product() {
         </NavStateEndBox>
       </NavStateBox>
       <Grid container>
-        <ProductImageAndBtn sm={12} item md={4}>
+        <ProductImageAndBtn sm={12} item md={5}>
           <StartGrid />
         </ProductImageAndBtn>
-        <InfoProduct sm={12} item md={8}>
+        <InfoProduct sm={12} item md={7}>
           <EndGrid />
         </InfoProduct>
       </Grid>
