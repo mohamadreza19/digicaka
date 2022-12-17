@@ -223,15 +223,15 @@ export const EndButtons = ({setIsOpenDialog,selectedCity}) => {
   }));
  const SelectedCityBox= ()=>{
   let mapped = null
-  const parsed= JSON.parse(selectedCity)
+ 
   
   mapped= selectedCity !== "init"&&
     
      (<Content>
       <span className="me-2">ارسال به</span>
-      {parsed.city}
+      {JSON.parse(selectedCity.city)}
       ،
-      {parsed.subCity}
+      {JSON.parse(selectedCity.subCity)}
     </Content>
     )
     
