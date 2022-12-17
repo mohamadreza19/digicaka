@@ -15,6 +15,22 @@ export const colors = {
   gray: "#F0F0F1",
 };
 export const theme = createTheme({
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#FFFFFF",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: "#343434 !important",
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: ["Yekan,ubonto"],
   },

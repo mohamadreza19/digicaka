@@ -1,4 +1,5 @@
-import { ThemeProvider } from "@mui/material";
+import { cloneElement } from "react";
+import { ThemeProvider, useScrollTrigger } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
 import { cacheRTL, Container, theme } from "./styles/theme";
 
@@ -28,8 +29,8 @@ export default function App() {
   const [spacialProducts, setSpacialProducts] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCity, setCelectedCity] = useState({
-    city:'init',
-    subCity:'init'
+    city: "init",
+    subCity: "init",
   });
   useEffect(function () {
     const fetchSpacialProduct = () => {
@@ -47,6 +48,7 @@ export default function App() {
     };
     fetchSpacialProduct();
   }, []);
+  //
 
   return (
     <CacheProvider value={cacheRTL}>
@@ -66,6 +68,7 @@ export default function App() {
         >
           <Container>
             <AppBar />
+
             <Routes>
               <Route path="/" element={<AppMain />} />
               <Route path="/product/:name" element={<Product />} />

@@ -186,7 +186,7 @@ export function MenuItems() {
       return (
         <ListItemMenuBtn onMouseEnter={() => setSubItem(d)} key={index}>
           <IconBox>
-            <CustomIcon />
+            <CustomIcon className="fill-red" />
           </IconBox>
           <Title variant="body2">{d.title}</Title>
         </ListItemMenuBtn>

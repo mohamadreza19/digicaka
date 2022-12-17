@@ -11,6 +11,8 @@ import {
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { HandllyCarousel } from "./HandlyCarousel";
 import Fresh from "./Fresh";
+import { DigikalaOrder } from "./DigikalaOrder";
+
 const logos = [
   {
     link: "https://dkstatics-public.digikala.com/digikala-bellatrix/d0dc31c892be8cf1408e4e14580b3f479da66bd1_1648897133.png",
@@ -43,6 +45,7 @@ const logos = [
     text: "چرخ و بخت",
   },
 ];
+
 export function Desktop() {
   const MappedLogos = () => {
     const mappedLogos = logos.map((logo, index) => {
@@ -77,7 +80,8 @@ export function Desktop() {
           <MappedLogos />
         </LogoesBox>
         <HandllyCarousel />
-        <Fresh />
+        {/* <Fresh /> */}
+        <DigikalaOrder />
       </MiddleContainer>
     </div>
   );

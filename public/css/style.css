@@ -40,13 +40,19 @@ a:active {
 }
 span {
   font-family: inherit;
+  color: #343434;
+}
+svg {
+  fill: #343434 !important;
 }
 * {
   padding: 0;
   margin: 0;
   font-family: Yekan;
 }
-
+.direction-rlt {
+  direction: rtl !important;
+}
 .menu-parent {
   background-color: #ffffff;
   z-index: 999;
@@ -132,8 +138,11 @@ span {
 .fill-gray {
   fill: #a1a3a8 !important;
 }
-.bg-gray{
-  background-color:  #F7F7F7 !important;;
+.fill-red {
+  fill: #ef3c51 !important;
+}
+.bg-gray {
+  background-color: #f7f7f7 !important;
 }
 .h-40px {
   height: 40px !important;
@@ -180,11 +189,92 @@ span {
 .justify-content-space-between {
   justify-content: space-between;
 }
-.border-top{
-  border-top: 1px solid #a1a3a8 ;
-
+.border-top {
+  border-top: 1px solid #a1a3a8;
 }
-.border-bottom{
- 
-  border-bottom: 1px solid #a1a3a8 ;
+.border-bottom {
+  border-bottom: 1px solid #a1a3a8;
+}
+.swiper {
+  direction: ltr;
+  width: 100%;
+  height: 400px;
+}
+.swiper-rtl {
+  direction: ltr;
+  width: 100%;
+}
+/* .swiper * {
+  direction: ltr;
+} 
+.swiper * * {
+  direction: ltr;
+}
+.swiper * * * {
+  direction: ltr;
+} */
+.swiper:hover .swiper-button-next {
+  display: block !important;
+}
+.swiper:hover .swiper-button-prev {
+  display: block !important;
+}
+.siwper-slide {
+  width: 300px;
+  height: 300px;
+  background-color: #39ae00;
+  color: #ebe9e9;
+}
+.siwper-slide img {
+  width: 100%;
+  height: inherit;
+}
+
+.swiper-button-next {
+  display: none !important;
+  width: 40px !important;
+  height: 42px !important;
+  border-radius: 9999px;
+  top: 85% !important;
+  left: 96% !important;
+  background-color: #ebe9e9;
+  background-image: url("/images/right-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 20% auto;
+  background-position: center;
+}
+.swiper-button-next::after {
+  display: none;
+}
+.swiper-button-prev {
+  display: none !important;
+  width: 40px !important;
+  height: 42px !important;
+  border-radius: 9999px;
+  top: 85% !important;
+  right: 0;
+  left: 92% !important;
+  background-image: url("/images/left-arrow.svg");
+  background-color: #ebe9e9;
+  background-repeat: no-repeat;
+  background-size: 20% auto;
+  background-position: center;
+}
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-pagination {
+  left: 45% !important;
+}
+.swiper-pagination-bullet {
+  width: 6px !important;
+  border-radius: 10px !important;
+  height: 4px !important;
+  margin-left: 0 !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: aliceblue !important;
+  width: 7px !important;
+  height: 5px !important;
 }

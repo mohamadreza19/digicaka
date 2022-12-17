@@ -142,7 +142,7 @@ export const StartButton = (props) => {
     alignItems: "center",
     cursor: "pointer",
     "&:hover": {
-      borderBottom: "2px solid #EE384E",
+      borderBottom: "2px solid #EE384E !important",
     },
   }));
   const Content = styled(Typography)(() => ({
@@ -178,21 +178,21 @@ export const MainButtons = (props) => {
   const Content = styled(Typography)(() => ({
     marginLeft: "6px",
     fontWeight: "200",
-    color: "#62666D",
+    color: "#62666D !important",
   }));
 
   return (
     <Parent>
       <MyBox className="mame">
-        <ShoppingBasket sx={{ color: "#62666D" }} fontSize="3px" />
+        <ShoppingBasket className="fill-gray" fontSize="3px" />
         <Content variant="body1">سوپرمارکت</Content>
       </MyBox>
       <MyBox>
-        <Whatshot sx={{ color: "#62666D" }} fontSize="3px" />
+        <Whatshot className="fill-gray" fontSize="3px" />
         <Content variant="body1">پر فروش ترین ها</Content>
       </MyBox>
       <MyBox>
-        <Discount sx={{ color: "#62666D" }} fontSize="3px" />
+        <Discount className="fill-gray" fontSize="3px" />
         <Content variant="body1">تخفیف و پیشنهادات</Content>
       </MyBox>
     </Parent>
@@ -202,7 +202,7 @@ export const MainButtons = (props) => {
 export const EndListBox = styled(Box)(() => ({
   marginLeft: "auto",
 }));
-export const EndButtons = ({setIsOpenDialog,selectedCity}) => {
+export const EndButtons = ({ setIsOpenDialog, selectedCity }) => {
   const Parent = styled(Box)(() => ({
     display: "flex",
     justifyContent: "space-between",
@@ -220,44 +220,30 @@ export const EndButtons = ({setIsOpenDialog,selectedCity}) => {
     marginLeft: "6px",
     fontWeight: "200",
     color: "#62666D",
+    fontFamily: "",
   }));
- const SelectedCityBox= ()=>{
-  let mapped = null
-  const parsed= JSON.parse(selectedCity)
-  
-  mapped= selectedCity !== "init"&&
-    
-     (<Content>
-      <span className="me-2">ارسال به</span>
-      {parsed.city}
-      ،
-      {parsed.subCity}
-    </Content>
-    )
-    
-    
-  
-  return<>{mapped? mapped: <Content>انتخاب شهر</Content>}</>
-   
-  }
+  const SelectedCityBox = () => {
+    if (selectedCity !== "init") {
+      const parsedCelectedCity = JSON.parse(selectedCity);
+
+      return (
+        <Content>
+          <span className="me-2">ارسال به </span>
+          <span>{parsedCelectedCity.city}</span>
+          <span>،</span>
+          <span>{parsedCelectedCity.subCity}</span>
+        </Content>
+      );
+    } else {
+      return <Content>لطفا شهر خود را انتخاب کنید</Content>;
+    }
+  };
 
   return (
     <Parent>
-      <MyBox className=""
-      onClick={setIsOpenDialog}
-      >
+      <MyBox onClick={setIsOpenDialog}>
         <LocationOnOutlined sx={{ color: "#62666D" }} fontSize="3px" />
-        {/* <Content variant="body1">
-         {selectedCity !== "init" &&
-          <span>ارسال به</span>
-        } 
-          
-         
-         
-         " لطفا شهر خود را انتخاب کنید"
-         
-          </Content> */}
-          <SelectedCityBox/>
+        <SelectedCityBox />
       </MyBox>
     </Parent>
   );
