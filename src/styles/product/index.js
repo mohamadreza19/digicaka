@@ -1,4 +1,5 @@
-import { styled, Typography, Box, Grid } from "@mui/material";
+import { styled, Typography, Box, Grid, Button } from "@mui/material";
+import { DiscountBox } from "../appmain";
 
 export const RootContiner = styled(Box)(() => ({
   width: "94%",
@@ -82,36 +83,38 @@ export const InfoEndBox = styled(Box)(() => ({
 
 // END grid
 export const EndGridColumnOne = styled(Box)(() => ({
- width:'55%'
+  width: "60%",
 }));
 export const EndGridColumnTwo = styled(Box)(() => ({
-  width:'45%',
-  margin:'4rem 0 0 1rem',
-          border:'1px solid #E0E0E2',
-          borderRadius:'8px'
- }));
- export const EGCT_SellerInfoBox = styled(Box)(() => ({
-  width:'100%',
+  width: "40%",
+  margin: "4rem 0 0 1rem",
+  border: "1px solid #E0E0E2",
+  borderRadius: "8px",
+}));
+export const EGCT_SellerInfoBox = styled(Box)(() => ({
+  width: "100%",
   // margin:'1rem'
-  padding:'1rem'
- }));
- export const EGCT_SellerInfo_Item = styled(Box)(() => ({
-   width:"100%",
-  justifyContent:'center',
-  flexDirection:'column',
-  padding:'1rem'
+  padding: "1rem",
+}));
+export const EGCT_SellerInfo_Item = styled(Box)(() => ({
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  padding: "1rem",
 }));
 
- export const EGCT_SellerInfoRowOne = styled(Box)(() => ({
-   
+export const EGCT_SellerInfoRowOne = styled(Box)(() => ({}));
+export const EGCT_SellerInfoRowTow = styled(Box)(() => ({}));
+export const EGCT_SellerInfoRowThree = styled(Box)(() => ({}));
+export const EGCT_SellerInfoRowFour = styled(Box)(() => ({
+  display: "flex",
 }));
-export const EGCT_SellerInfoRowTow = styled(Box)(() => ({
-   
-}));
-export const EGCT_SellerInfoRowThree = styled(Box)(() => ({
-   
+
+export const DiscountBox_v2 = styled(DiscountBox)(() => ({
+  margin: "0",
 }));
 export const PersionNumber_v2 = styled(Typography)(() => ({
-   fontFamily:'IranSens',
-  
+  fontFamily: "IranSens",
 }));
+export const Button_v1 = styled(Button)(() => ({}));

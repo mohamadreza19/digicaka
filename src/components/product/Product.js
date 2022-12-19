@@ -1,4 +1,3 @@
-
 import {
   ArrowBackIos,
   AssignmentTurnedIn,
@@ -37,7 +36,21 @@ import { Link, useParams } from "react-router-dom";
 import { useImmer } from "use-immer";
 import { UiContext } from "../../contextApi/uiContext";
 import {
+  Discount,
+  DiscountBox,
+  Price,
+  PriceBox,
+  RedPercent,
+  RedPercentBox,
+  Toman,
+  TomanBox,
+} from "../../styles/appmain";
+import {
+  Button,
+  Button_v1,
+  DiscountBox_v2,
   EGCT_SellerInfoBox,
+  EGCT_SellerInfoRowFour,
   EGCT_SellerInfoRowOne,
   EGCT_SellerInfoRowThree,
   EGCT_SellerInfoRowTow,
@@ -339,53 +352,100 @@ export default function Product() {
           <PropertyBox />
         </EndGridColumnOne>
         <EndGridColumnTwo className="bg-gray-200">
-          <EGCT_SellerInfoBox  
-          id="SellerBox"
-          className="w-100 ">
+          <EGCT_SellerInfoBox id="SellerBox" className="w-100 ">
             <EGCT_SellerInfoRowOne className="d-flex w-100  flex-column  ">
               <EGCT_SellerInfo_Item className="  border-bottom ">
-              <p className="font-weight-bold .font-size-1_6rm">فروشنده</p>
-              <div className="d-flex mt-1rm">
-               <StoreSharp />
-               {/* sellerName */}
-               <Typography className="ms-2" variant="subtitle1">کارزین تل</Typography>
-              </div>
-              <div className="d-flex align-items-center  justify-content-center mt-2">
-                <PersionNumber className="color-green" variant="caption">{"100%"}</PersionNumber>
-               <Typography sx={{color:"#81858B"}} variant="caption" className="ms-md-2 ">
-                  رضایت از کالا
-               </Typography>
-               <span className="ms-2 me-2">|</span>
-               <Typography sx={{color:"#81858B"}} variant="caption">
-                  عملکرد
-               </Typography>
-               <Typography variant="caption" className="ms-md-2  color-green">
-                {"عالی"}
-               </Typography>
-              </div>
+                <p className="font-weight-bold .font-size-1_6rm">فروشنده</p>
+                <div className="d-flex mt-1rm">
+                  <StoreSharp />
+                  {/* sellerName */}
+                  <Typography className="ms-2" variant="subtitle1">
+                    کارزین تل
+                  </Typography>
+                </div>
+                <div className="d-flex align-items-center  justify-content-center mt-2">
+                  <PersionNumber className="color-green" variant="caption">
+                    {"100%"}
+                  </PersionNumber>
+                  <Typography
+                    sx={{ color: "#81858B" }}
+                    variant="caption"
+                    className="ms-md-2 "
+                  >
+                    رضایت از کالا
+                  </Typography>
+                  <span className="ms-2 me-2">|</span>
+                  <Typography sx={{ color: "#81858B" }} variant="caption">
+                    عملکرد
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    className="ms-md-2  color-green"
+                  >
+                    {"عالی"}
+                  </Typography>
+                </div>
               </EGCT_SellerInfo_Item>
             </EGCT_SellerInfoRowOne>
             <EGCT_SellerInfoRowTow>
-             <EGCT_SellerInfo_Item className="border-bottom">
-              <GppGood />
-              <PersionNumber className="ms-2" variant="button">
-                {'گارانتی 6 ماهه ارمان همرا ارتباط آریا'}
-              </PersionNumber>
-             </EGCT_SellerInfo_Item>
+              <EGCT_SellerInfo_Item className="border-bottom">
+                <div className="d-flex">
+                  <GppGood />
+                  <PersionNumber className="ms-2" variant="button">
+                    {"گارانتی 6 ماهه ارمان همرا ارتباط آریا"}
+                  </PersionNumber>
+                </div>
+              </EGCT_SellerInfo_Item>
             </EGCT_SellerInfoRowTow>
             <EGCT_SellerInfoRowThree>
-            <EGCT_SellerInfo_Item>
-              <div className="d-flex justify-content-between">
-                <div className="d-flex">
-                <AssignmentTurnedIn className="fill-blue"/>
-              <Typography className="font-weight-bold ms-2" variant="body1">
-                {"موجود در انبار دیجی کالا"}
-              </Typography>
+              <EGCT_SellerInfo_Item className="border-bottom">
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex">
+                    <AssignmentTurnedIn className="fill-blue" />
+                    <Typography
+                      className="font-weight-bold ms-2"
+                      variant="body1"
+                    >
+                      {"موجود در انبار دیجی کالا"}
+                    </Typography>
+                  </div>
+                  <ArrowBackIos fontSize="small" />
                 </div>
-                <ArrowBackIos fontSize="small"/>
-              </div>
-            </EGCT_SellerInfo_Item>
+              </EGCT_SellerInfo_Item>
             </EGCT_SellerInfoRowThree>
+            <EGCT_SellerInfoRowFour>
+              <EGCT_SellerInfo_Item>
+                <div className="d-flex justify-content-end">
+                  <DiscountBox_v2 className="me-2">
+                    <Discount variant="caption">909,590</Discount>
+                  </DiscountBox_v2>
+                  <RedPercentBox>
+                    <RedPercent>{"12%"}</RedPercent>
+                  </RedPercentBox>
+                </div>
+                <div className="d-flex">
+                  <Info className="fill-gray" fontSize="small" />
+                  <Typography className="text-gray ms-2" variant="caption">
+                    قیمت فروشنده
+                  </Typography>
+                </div>
+                <div className="d-flex justify-content-end">
+                  <div className="pricebox">
+                    <PriceBox>
+                      <Price variant="body1" className="price">
+                        999999
+                      </Price>
+                    </PriceBox>
+                    <TomanBox>
+                      <Toman src="/fonts/toman.svg" />
+                    </TomanBox>
+                  </div>
+                </div>
+                <Button_v1 variant="contained" className="bg-red">
+                  افزودن به سبد
+                </Button_v1>
+              </EGCT_SellerInfo_Item>
+            </EGCT_SellerInfoRowFour>
           </EGCT_SellerInfoBox>
         </EndGridColumnTwo>
       </div>
