@@ -110,6 +110,10 @@ svg {
 .w-28 {
   width: 28%;
 }
+.w-96{
+  width: 96%;
+  margin: 0 auto;
+}
 .mt-1rm {
   margin-top: 1rem;
 }
@@ -158,6 +162,9 @@ svg {
 }
 .color-green {
   color: #4da049 !important;
+}
+.color-red {
+  color: #ef3c51 !important;
 }
 .h-40px {
   height: 40px !important;
@@ -296,3 +303,5 @@ svg {
   width: 7px !important;
   height: 5px !important;
 }
+
+

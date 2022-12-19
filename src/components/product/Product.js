@@ -3,12 +3,14 @@ import {
   AssignmentTurnedIn,
   Balance,
   BarChart,
+  Close,
   Done,
   Favorite,
   FormatListBulleted,
   GppGood,
   Hail,
   Info,
+  MoreHoriz,
   Notifications,
   Share,
   Star,
@@ -20,6 +22,8 @@ import {
 import {
   Avatar,
   Box,
+  ClickAwayListener,
+  Dialog,
   Divider,
   FormControl,
   Grid,
@@ -48,7 +52,15 @@ import {
 import {
   Button,
   Button_v1,
+  DialogSliderBox,
+  Dialog_v1,
   DiscountBox_v2,
+  DSM_CloumnOne,
+  DSM_CloumnTwo,
+  DSM_Img,
+  DSTitle,
+  DS_MainBox,
+  DS_TitleBox,
   EGCT_SellerInfoBox,
   EGCT_SellerInfoRowFour,
   EGCT_SellerInfoRowOne,
@@ -71,6 +83,9 @@ import {
   ProductImageAndBtn,
   ProductImageBox,
   RootContiner,
+  SliderImg,
+  SliderItemBox,
+  SliderProductRootBox,
 } from "../../styles/product";
 
 export default function Product() {
@@ -85,8 +100,8 @@ export default function Product() {
       init: "init",
     },
   });
-
   const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
+  const [IsDialogOpen, SetIsDialogOpen] = useImmer(false);
   useEffect(
     function fillingPoroduct() {
       const matched = spacialProducts.find((item) => item.name[0] === name);
@@ -451,7 +466,63 @@ export default function Product() {
       </div>
     );
   };
+  const SliderDialog= ()=>{
 
+    return(
+      
+      <Dialog_v1
+       open={IsDialogOpen}
+    
+       >
+           < ClickAwayListener 
+           onClickAway={()=>SetIsDialogOpen(false)}>
+          <DialogSliderBox >
+          <div className="w-96">
+          <DS_TitleBox
+          className="border-bottom"
+          >
+            <DSTitle
+            variant="body1"
+            className="color-red font-weight-bold "
+            >تصاویر رسمی
+            </DSTitle>
+            <Close/>
+          </DS_TitleBox>
+            <DS_MainBox className="d-flex mt-2 mb-2" >
+            <DSM_CloumnOne>
+              <DSM_Img src={product?.link}/>
+            </DSM_CloumnOne>
+            <DSM_CloumnTwo>
+              
+                
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                    <SliderItemBox>
+                    <SliderImg src={product.link}/>
+                    </SliderItemBox>
+                
+            </DSM_CloumnTwo>
+            </DS_MainBox>
+          </div>
+          </DialogSliderBox>
+         </ClickAwayListener>
+         </Dialog_v1>
+         
+    )
+  }
   return (
     <RootContiner>
       <NavStateBox>
@@ -488,11 +559,26 @@ export default function Product() {
       <Grid container>
         <ProductImageAndBtn sm={12} item md={5}>
           <StartGrid />
+          <SliderProductRootBox>
+            {product.anotherLink?.map((item,index)=>{
+              return (
+          <SliderItemBox key={index} onClick={()=>SetIsDialogOpen(true)}>
+            <SliderImg src={item}/>
+          </SliderItemBox>
+              )
+            })}
+          <SliderItemBox onClick={()=>SetIsDialogOpen(true)}>
+            <SliderImg isLast={"true"} src={product.link}/>
+            <MoreHoriz className="position-absolute"/>
+          </SliderItemBox>
+          <SliderDialog/>
+          </SliderProductRootBox>
         </ProductImageAndBtn>
         <InfoProduct sm={12} item md={7}>
           <EndGrid />
         </InfoProduct>
       </Grid>
+     
     </RootContiner>
   );
 }

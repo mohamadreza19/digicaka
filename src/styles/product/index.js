@@ -1,4 +1,4 @@
-import { styled, Typography, Box, Grid, Button } from "@mui/material";
+import { styled, Typography, Box, Grid, Button, Dialog } from "@mui/material";
 import { DiscountBox } from "../appmain";
 
 export const RootContiner = styled(Box)(() => ({
@@ -64,7 +64,78 @@ export const ProductImage = styled("img")(({ src }) => ({
   width: "100%",
   src,
 }));
+//product image slider 
 
+export const SliderProductRootBox = styled(Box)(() => ({
+ width:'100%',
+ display:'flex'
+}));
+export const SliderItemBox = styled(Box)(() => ({
+  width:"80px",
+  height:'80px',
+  border:'1px solid #a1a3a8 ',
+  borderRadius:8,
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+  cursor:'pointer',
+  marginLeft:'0.5rem'
+ }));
+ export const SliderImg = styled('img')(({src,isLast}) => ({
+   width:'80%',
+   objectFit:'contain',
+   filter: isLast=="true"? "blur(4px)": "blur(0px)",
+   opacity: isLast=="true"? "0.5": "1",
+   src,
+   
+    
+ }));
+ //Dialog
+
+//  DialogSlider
+export const Dialog_v1 = styled(Dialog)(() => ({
+ "& .MuiPaper-root":{
+  maxWidth:'1000px'
+ }
+  
+
+   }));
+
+export const DialogSliderBox = styled(Box)(() => ({
+width:'900px',
+ 
+ }));
+ export const DS_TitleBox = styled(Box)(() => ({
+  width:'100%',
+  display:'flex',
+  marginTop:'0.5rem',
+  justifyContent:"space-between"
+  
+   }));
+
+ export const DSTitle = styled(Typography)(() => ({
+  
+   
+   }));
+ export const DS_MainBox = styled(Box)(() => ({
+  width:'90%',
+  margin:'0 auto'
+   
+   }));
+   export const DSM_CloumnOne = styled(Box)(() => ({
+    width:400,
+   }));
+   export const DSM_CloumnTwo = styled(Box)(() => ({
+    width:400,
+    display:'flex',
+    flexWrap:'wrap'
+   }));
+   export const DSM_Img = styled('img')(({src}) => ({
+     width:'100%',
+     src,
+   }));
+   
+   
 //info box
 export const InfoProduct = styled(Grid)(() => ({
   marginTop: "2rem",
