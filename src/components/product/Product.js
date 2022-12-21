@@ -102,6 +102,7 @@ export default function Product() {
   });
   const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
   const [IsDialogOpen, SetIsDialogOpen] = useImmer(false);
+  const [SelectedImageIndex, setSelectedImageIndex] = useImmer(0);
   useEffect(
     function fillingPoroduct() {
       const matched = spacialProducts.find((item) => item.name[0] === name);
@@ -466,63 +467,63 @@ export default function Product() {
       </div>
     );
   };
-  const SliderDialog= ()=>{
-
-    return(
-      
-      <Dialog_v1
-       open={IsDialogOpen}
-    
-       >
-           < ClickAwayListener 
-           onClickAway={()=>SetIsDialogOpen(false)}>
-          <DialogSliderBox >
-          <div className="w-96">
-          <DS_TitleBox
-          className="border-bottom"
-          >
-            <DSTitle
-            variant="body1"
-            className="color-red font-weight-bold "
-            >تصاویر رسمی
-            </DSTitle>
-            <Close/>
-          </DS_TitleBox>
-            <DS_MainBox className="d-flex mt-2 mb-2" >
-            <DSM_CloumnOne>
-              <DSM_Img src={product?.link}/>
-            </DSM_CloumnOne>
-            <DSM_CloumnTwo>
-              
-                
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                    <SliderItemBox>
-                    <SliderImg src={product.link}/>
-                    </SliderItemBox>
-                
-            </DSM_CloumnTwo>
-            </DS_MainBox>
-          </div>
+  const SliderDialog = () => {
+    return (
+      <Dialog_v1 open={IsDialogOpen}>
+        <ClickAwayListener onClickAway={() => SetIsDialogOpen(false)}>
+          <DialogSliderBox>
+            <div className="w-96">
+              <DS_TitleBox className="border-bottom">
+                <DSTitle
+                  variant="body1"
+                  className="color-red font-weight-bold "
+                >
+                  تصاویر رسمی
+                </DSTitle>
+                <div
+                  className="cur-pointer"
+                  onClick={() => SetIsDialogOpen(false)}
+                >
+                  <Close />
+                </div>
+              </DS_TitleBox>
+              <DS_MainBox className="d-flex mt-2 mb-2">
+                <DSM_CloumnOne>
+                  <DSM_Img
+                    src={
+                      "anotherLink" in product
+                        ? product.anotherLink[SelectedImageIndex]
+                        : ""
+                    }
+                  />
+                </DSM_CloumnOne>
+                <DSM_CloumnTwo>
+                  <Grid container rowSpacing={2}>
+                    {product.anotherLink?.map((item, index) => {
+                      return (
+                        <Grid
+                          onClick={() => {
+                            setSelectedImageIndex(() => index);
+                          }}
+                          key={index}
+                          item
+                          md={3}
+                        >
+                          <SliderItemBox>
+                            <SliderImg src={item} />
+                          </SliderItemBox>
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                </DSM_CloumnTwo>
+              </DS_MainBox>
+            </div>
           </DialogSliderBox>
-         </ClickAwayListener>
-         </Dialog_v1>
-         
-    )
-  }
+        </ClickAwayListener>
+      </Dialog_v1>
+    );
+  };
   return (
     <RootContiner>
       <NavStateBox>
@@ -560,25 +561,30 @@ export default function Product() {
         <ProductImageAndBtn sm={12} item md={5}>
           <StartGrid />
           <SliderProductRootBox>
-            {product.anotherLink?.map((item,index)=>{
+            {product.anotherLink?.map((item, index) => {
               return (
-          <SliderItemBox key={index} onClick={()=>SetIsDialogOpen(true)}>
-            <SliderImg src={item}/>
-          </SliderItemBox>
-              )
+                <SliderItemBox
+                  key={index}
+                  onClick={() => {
+                    SetIsDialogOpen(true);
+                    setSelectedImageIndex(() => index);
+                  }}
+                >
+                  <SliderImg src={item} />
+                </SliderItemBox>
+              );
             })}
-          <SliderItemBox onClick={()=>SetIsDialogOpen(true)}>
-            <SliderImg isLast={"true"} src={product.link}/>
-            <MoreHoriz className="position-absolute"/>
-          </SliderItemBox>
-          <SliderDialog/>
+            <SliderItemBox onClick={() => SetIsDialogOpen(true)}>
+              <SliderImg isLast={"true"} src={product.link} />
+              <MoreHoriz className="position-absolute" />
+            </SliderItemBox>
+            <SliderDialog />
           </SliderProductRootBox>
         </ProductImageAndBtn>
         <InfoProduct sm={12} item md={7}>
           <EndGrid />
         </InfoProduct>
       </Grid>
-     
     </RootContiner>
   );
 }
