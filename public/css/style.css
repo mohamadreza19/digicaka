@@ -110,7 +110,7 @@ svg {
 .w-28 {
   width: 28%;
 }
-.w-96{
+.w-96 {
   width: 96%;
   margin: 0 auto;
 }
@@ -303,5 +303,16 @@ svg {
   width: 7px !important;
   height: 5px !important;
 }
+/* test */
 
-
+.test-magnify div:nth-child(2) {
+  width: 1000px !important;
+  height: 500px !important;
+  background-color: white;
+}
+/* .test-magnify div:nth-child(3) {
+  width: 400px !important;
+  height: 150px !important;
+  background-color: #ef3c51;
+  opacity: 0.1 !important;
+} */

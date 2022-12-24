@@ -57,7 +57,7 @@ export const ProductEndBox = styled(Box)(() => ({
   justifyContent: "center",
 }));
 export const ProductImageBox = styled(Box)(({ src }) => ({
-  width: "60%",
+  width: "70%",
   src,
 }));
 export const ProductImage = styled("img")(({ src }) => ({

@@ -88,6 +88,8 @@ import {
   SliderProductRootBox,
 } from "../../styles/product";
 
+import ReactImageZoom from "react-image-zoom";
+import { SideBySideMagnifier } from "react-image-magnifiers";
 export default function Product() {
   const { name } = useParams();
   const { spacialProducts } = useContext(UiContext);
@@ -161,7 +163,20 @@ export default function Product() {
         </PbStartBox>
         <ProductEndBox>
           <ProductImageBox>
-            <ProductImage src={product.link} />
+            <SideBySideMagnifier
+              className="test-magnify"
+              imageSrc={
+                "https://dkstatics-public.digikala.com/digikala-products/7b909fe2cb331170306d361b4b24991e7b6d17e2_1656122727.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_80"
+              }
+              largeImageSrc={product.link}
+              switchSides
+              fillAvailableSpace={false}
+              zoomContainerBorder={"1px solid gray"}
+              overlayOpacity={0}
+              overlayBoxColor={"red"}
+              overlayBoxOpacity={1}
+            />
+            {/* <ProductImage src={product.link} /> */}
           </ProductImageBox>
         </ProductEndBox>
       </div>
