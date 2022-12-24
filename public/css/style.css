@@ -110,7 +110,7 @@ svg {
 .w-28 {
   width: 28%;
 }
-.w-96{
+.w-96 {
   width: 96%;
   margin: 0 auto;
 }
@@ -288,7 +288,7 @@ svg {
 .swiper-button-prev::after {
   display: none;
 }
-
+b
 .swiper-pagination {
   left: 45% !important;
 }
@@ -303,5 +303,20 @@ svg {
   width: 7px !important;
   height: 5px !important;
 }
+/* test */
 
+.test-magnify div:nth-child(3) {
+  display: none ;
+  width: 400px !important;
+  height: 150px !important ;
+  background-color: #ef3c51;
+  opacity: 0.2 !important;
+}
+
+
+.test-magnify div:nth-child(2) {
+  width: 700px !important;
+  height: 400px !important;
+  background-color: white;
+}
 

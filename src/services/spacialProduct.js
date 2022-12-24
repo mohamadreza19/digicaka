@@ -2,7 +2,7 @@ export const get_spacialProducts = () => {
   return [
     {
       name: ["coffee-maker", "قهوه ساز"],
-      link: "https://dkstatics-public.digikala.com/digikala-products/7b909fe2cb331170306d361b4b24991e7b6d17e2_1656122727.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      link: "https://dkstatics-public.digikala.com/digikala-products/7b909fe2cb331170306d361b4b24991e7b6d17e2_1656122727.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
       anotherLink: [
         "https://dkstatics-public.digikala.com/digikala-products/115697630.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
         "https://dkstatics-public.digikala.com/digikala-products/120039616.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
