@@ -8,7 +8,7 @@ import {
   Favorite,
   FormatListBulleted,
   GppGood,
-  Hail,
+  Hail, 
   Info,
   MoreHoriz,
   Notifications,
@@ -61,12 +61,19 @@ import {
   DSTitle,
   DS_MainBox,
   DS_TitleBox,
+  EB_PropertyBox,
+  EB_PropertyItemBox,
+  EB_Title,
+  EB_TitleBox,
+  EB_TitleItemBox,
+  EB_TitleOfPropertyBox,
   EGCT_SellerInfoBox,
   EGCT_SellerInfoRowFour,
   EGCT_SellerInfoRowOne,
   EGCT_SellerInfoRowThree,
   EGCT_SellerInfoRowTow,
   EGCT_SellerInfo_Item,
+  EndBox,
   EndGridColumnOne,
   EndGridColumnTwo,
   InfoProduct,
@@ -602,6 +609,30 @@ export default function Product() {
           <EndGrid />
         </InfoProduct>
       </Grid>
+      <EndBox>
+        <EB_TitleBox className="border-bottom">
+          <EB_TitleItemBox variant="body1">
+          <EB_Title variant="body1">
+            مشخصات
+          </EB_Title>
+          </EB_TitleItemBox>
+          <EB_TitleItemBox>
+          <EB_Title variant="body1">
+            دیدگاه
+          </EB_Title>
+          </EB_TitleItemBox>
+          
+        </EB_TitleBox>
+        <EB_PropertyBox >
+          <EB_PropertyItemBox>
+            <EB_TitleOfPropertyBox>
+              <Typography className="font-weight-bold" variant="h6">
+              مشخصات
+              </Typography>
+            </EB_TitleOfPropertyBox>
+            </EB_PropertyItemBox>
+        </EB_PropertyBox>
+      </EndBox>
     </RootContiner>
   );
 }

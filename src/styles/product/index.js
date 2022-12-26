@@ -178,3 +178,48 @@ export const PersionNumber_v2 = styled(Typography)(() => ({
   fontFamily: "IranSens",
 }));
 export const Button_v1 = styled(Button)(() => ({}));
+//EndBox
+
+export const EndBox =  styled(Box)(() => ({
+marginBottom:'10px'
+}));
+
+
+export const EB_TitleBox =  styled(Box)(() => ({
+  display:'flex',
+ 
+}));
+export const EB_TitleItemBox =  styled(Box)(() => ({
+  paddingBottom:'1rem',
+  borderBottom:'3px solid black',
+  marginLeft:'1rem',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+  width:'60px',
+  height:'24px',
+  minWidth:'60px',
+  minHeight:'24px',
+}));
+export const EB_Title =  styled(Typography)(() => ({
+  
+}));
+//EB_PropertyBox
+
+export const EB_PropertyBox =  styled(Box)(() => ({
+  
+}));
+export const EB_PropertyItemBox =  styled(Box)(() => ({
+  paddingBottom:'1rem',
+  borderBottom:'3px solid black',
+  width:'60px',
+  // height:'40px',
+  minWidth:'74px',
+  minHeight:'32px',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+}));
+export const EB_TitleOfPropertyBox =  styled(Box)(() => ({
+    marginTop:'2rem'
+}));
