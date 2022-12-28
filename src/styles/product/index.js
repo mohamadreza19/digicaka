@@ -181,17 +181,18 @@ export const Button_v1 = styled(Button)(() => ({}));
 //EndBox
 
 export const EndBox =  styled(Box)(() => ({
-marginBottom:'10px'
+marginBottom:'10px',
+position:'sticky'
 }));
 
 
 export const EB_TitleBox =  styled(Box)(() => ({
   display:'flex',
- 
+
 }));
 export const EB_TitleItemBox =  styled(Box)(() => ({
   paddingBottom:'1rem',
-  borderBottom:'3px solid black',
+  borderBottom:'3px solid #ef3c51',
   marginLeft:'1rem',
   display:'flex',
   justifyContent:'center',
@@ -207,19 +208,87 @@ export const EB_Title =  styled(Typography)(() => ({
 //EB_PropertyBox
 
 export const EB_PropertyBox =  styled(Box)(() => ({
-  
+  // display:'flex',
+  // flexDirection:'column',
+  borderBottom:'3px solid #F0F0F1',
+  marginTop:"2rem",
 }));
 export const EB_PropertyItemBox =  styled(Box)(() => ({
+  display:'flex',
+  flexDirection:'column',
+  justifyContent:'center',
+  alignItems:'start',
+}));
+export const EB_TitleOfPropertyBox =  styled(Box)(() => ({
   paddingBottom:'1rem',
-  borderBottom:'3px solid black',
-  width:'60px',
-  // height:'40px',
+  borderBottom:'3px solid #ef3c51',
+  height:'40px',
   minWidth:'74px',
   minHeight:'32px',
   display:'flex',
   justifyContent:'center',
   alignItems:'center',
+  // fontWeight: 400,
+  // lineHeight: 2.15 
+marginBottom:'4rem'
 }));
-export const EB_TitleOfPropertyBox =  styled(Box)(() => ({
-    marginTop:'2rem'
+
+
+export const EB_BodyOfPropertyBox =  styled(Box)(() => ({
+  display:'flex',
+  alignItems:'center'
 }));
+export const EB_BodyOfProperty =  styled(Typography)(() => ({
+   fontWeight: 400,
+  lineHeight: 2.15 
+})); 
+//Comment Box
+
+export const CommentBox = styled(Grid)(() => ({
+//  display:'flex',
+})); 
+export const CB_TitleBox = styled(Box)(() => ({
+  margin:'2rem 0',
+ })); 
+export const CB_ScoreAndSortBox = styled(Box)(() => ({
+ marginBottom:'2rem',
+ display:'flex',
+ flexDirection:'column'
+
+ })); 
+
+export const CB_BigScoreBox = styled(Box)(() => ({
+  display:'flex',
+  justifyContent:'start',
+  alignItems:'center',
+ 
+ })); 
+export const CB_StarRiteBox = styled(Box)(() => ({
+  marginTop:'1rem',
+  marginBottom:'2rem'
+ })); 
+ 
+ export const MyButton = styled(Button)(() => ({
+  color:'#ef3c51 ',
+  borderColor:'#ef3c51 ',
+  "&:hover":{
+    color:'#ef3c51 ',
+    backgroundColor:'#FFFFFF',
+    borderColor:'#ef3c51'
+  }
+ })); 
+ // EB_jeader
+
+ export const Badge_v1 = styled(Box)(() => ({
+  width:'35px',
+  height:'25px',
+  color:'#FFFFFF',
+  borderRadius:'4px',
+  backgroundColor:'#00A049',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+  fontSize:'0.9rem'
+})); 
+
+ 
