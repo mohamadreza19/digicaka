@@ -54,10 +54,7 @@ export function Desktop(props) {
     "selected-city",
     "init"
   );
-  // const [triggerForHide, setTriggerForHide] = useImmer(
-  //  useScrollTrigger({})
-  // );
-  console.log(useScrollTrigger({}))
+
   //
   function ScrollTop(props) {
     const { children, window } = props;
@@ -94,21 +91,7 @@ export function Desktop(props) {
       </Fade>
     );
   }
-  function HideOnScroll(props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({
-      target: window ? window() : undefined,
-    });
-  
-    return (
-      <Slide appear={false} direction="down" in={!trigger}>
-        {children}
-      </Slide>
-    );
-  }
+
   //
   const CitiesDialog = (props) => {
     const { onClose, open } = props;
@@ -223,7 +206,9 @@ export function Desktop(props) {
               </ActionButtonBox>
             </ContainerRowOne>
             
-            <ContainerRowTwo className={`mb-3 ${useScrollTrigger({})? "d-none" : ""}`}>
+            <ContainerRowTwo className={`mb-3 ${useScrollTrigger({
+              threshold:200
+            })? "d-none" : ""}`}>
               <ListBox>
                 <EachItemListBox
                   onMouseEnter={() => setOpenMenu(true)}
