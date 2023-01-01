@@ -104,6 +104,9 @@ svg {
 .mt-4rem {
   margin-top: 4rem;
 }
+.w-90 {
+  width: 90%;
+}
 .w-72 {
   width: 72%;
 }
@@ -133,8 +136,11 @@ svg {
 .fill-yellow {
   fill: #f9a825 !important;
 }
+.fill-blue-info {
+  fill: #54c1d6 !important;
+}
 .text-blue-info {
-  color: #54c1d6;
+  color: #54c1d6 ;
 }
 .text-gray {
   color: #acaeb2 !important;
@@ -320,3 +326,18 @@ b
   background-color: white;
 }
 
+.button-back {
+  /* display: block !important; */
+  width: 40px !important;
+  height: 42px !important;
+  border-radius: 9999px;
+  background-image: url("/images/left-arrow.svg");
+  background-color: #ebe9e9;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-position: center;
+}
+
+.isReadMoreShown-btn svg{
+  fill: #54c1d6 !important;
+}

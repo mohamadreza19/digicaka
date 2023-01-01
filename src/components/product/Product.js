@@ -19,7 +19,9 @@ import {
   StoreSharp,
   ThumbUpOffAlt,
 } from "@mui/icons-material";
+
 import {
+  AppBar,
   Avatar,
   Box,
   ClickAwayListener,
@@ -31,6 +33,11 @@ import {
   MenuItem,
   Select,
   styled,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
   Toolbar,
   Tooltip,
   Typography,
@@ -50,8 +57,14 @@ import {
   TomanBox,
 } from "../../styles/appmain";
 import {
+  Badge_v1,
   Button,
   Button_v1,
+  CB_BigScoreBox,
+  CB_ScoreAndSortBox,
+  CB_StarRiteBox,
+  CB_TitleBox,
+  CommentBox,
   DialogSliderBox,
   Dialog_v1,
   DiscountBox_v2,
@@ -61,15 +74,25 @@ import {
   DSTitle,
   DS_MainBox,
   DS_TitleBox,
+  EB_BodyOfProperty,
+  EB_BodyOfPropertyBox,
+  EB_PropertyBox,
+  EB_PropertyItemBox,
+  EB_Title,
+  EB_TitleBox,
+  EB_TitleItemBox,
+  EB_TitleOfPropertyBox,
   EGCT_SellerInfoBox,
   EGCT_SellerInfoRowFour,
   EGCT_SellerInfoRowOne,
   EGCT_SellerInfoRowThree,
   EGCT_SellerInfoRowTow,
   EGCT_SellerInfo_Item,
+  EndBox,
   EndGridColumnOne,
   EndGridColumnTwo,
   InfoProduct,
+  MyButton,
   NaveStateEndItemBox,
   NavState,
   NavStateBox,
@@ -90,6 +113,10 @@ import {
 
 import ReactImageZoom from "react-image-zoom";
 import { SideBySideMagnifier } from "react-image-magnifiers";
+import { Tab } from "bootstrap";
+import ReactShowMoreText from "react-show-more-text";
+import { ReadMoreText } from "./layout/ReadMoreText";
+import { Waypoint } from "react-waypoint";
 export default function Product() {
   const { name } = useParams();
   const { spacialProducts } = useContext(UiContext);
@@ -105,6 +132,7 @@ export default function Product() {
   const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
   const [IsDialogOpen, SetIsDialogOpen] = useImmer(false);
   const [SelectedImageIndex, setSelectedImageIndex] = useImmer(0);
+  const [onLeave_EB_TitleBox, setOnLeave_EB_TitleBox] = useImmer(false);
   useEffect(
     function fillingPoroduct() {
       const matched = spacialProducts.find((item) => item.name[0] === name);
@@ -164,7 +192,6 @@ export default function Product() {
         <ProductEndBox>
           <ProductImageBox>
             <SideBySideMagnifier
-            
               className="test-magnify"
               imageSrc={
                 "https://dkstatics-public.digikala.com/digikala-products/7b909fe2cb331170306d361b4b24991e7b6d17e2_1656122727.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_80"
@@ -175,8 +202,6 @@ export default function Product() {
               // zoomContainerBorder={"1px solid gray"}
               overlayOpacity={0.5}
               // overlayBoxColor={"#EF3C51"}
-              
-              
             />
             {/* <ProductImage src={product.link} /> */}
           </ProductImageBox>
@@ -273,7 +298,6 @@ export default function Product() {
       } else return null;
     };
     const PropertyBox = () => {
-      console.log(product.property);
       if ("property" in product) {
         const keyAndValue = Object.entries(product.property);
 
@@ -367,8 +391,14 @@ export default function Product() {
             className="mt-2 w-100 d-flex justify-start"
           >
             <ThumbUpOffAlt className="fill-green " fontSize="small" />
-            <PersionNumber className="ms-1" variant="caption">{`78%`}</PersionNumber>
-            <PersionNumber className="ms-1 me-1" variant="caption">{`(40)`}</PersionNumber>
+            <PersionNumber
+              className="ms-1"
+              variant="caption"
+            >{`78%`}</PersionNumber>
+            <PersionNumber
+              className="ms-1 me-1"
+              variant="caption"
+            >{`(40)`}</PersionNumber>
             <Typography variant="caption">
               از خریداران این کالا را پیشنهاد کردا اند
             </Typography>
@@ -541,6 +571,7 @@ export default function Product() {
       </Dialog_v1>
     );
   };
+  console.log(onLeave_EB_TitleBox);
   return (
     <RootContiner>
       <NavStateBox>
@@ -602,6 +633,195 @@ export default function Product() {
           <EndGrid />
         </InfoProduct>
       </Grid>
+      <EndBox>
+        <Waypoint
+          onLeave={() => {
+            setOnLeave_EB_TitleBox((draft) => true);
+            console.log("s");
+          }}
+          onEnter={() => setOnLeave_EB_TitleBox((draft) => false)}
+        />
+        <EB_TitleBox
+          className="border-bottom"
+          onLeaveArea={onLeave_EB_TitleBox}
+        >
+          <EB_TitleItemBox variant="body1">
+            <EB_Title variant="body1">معرفی</EB_Title>
+          </EB_TitleItemBox>
+          <EB_TitleItemBox variant="body1">
+            <EB_Title variant="body1">مشخصات</EB_Title>
+          </EB_TitleItemBox>
+          <EB_TitleItemBox>
+            <EB_Title variant="body1">دیدگاه</EB_Title>
+          </EB_TitleItemBox>
+        </EB_TitleBox>
+
+        <EB_PropertyBox>
+          {/* intoduction */}
+          <EB_PropertyItemBox>
+            <Waypoint
+              onLeave={() => {
+                console.log("onLeave معرفی");
+              }}
+              onEnter={() => console.log("onEnter معرفی")}
+            />
+            <EB_TitleOfPropertyBox>
+              <Typography className=" font-weight-bold" variant="h6">
+                معرفی
+              </Typography>
+            </EB_TitleOfPropertyBox>
+            <EB_BodyOfPropertyBox>
+              <EB_BodyOfProperty variant="body2">
+                <ReadMoreText>
+                  در برند لیتو سعی شده است که تمامی محصولات مطابق با استاندارد
+                  های جهانی تولید شوند. لیتو می‌خواهد با ایربادز LT7 تمامی
+                  نیازهایی را که کاربر از یک ایربادز کاملا بدون سیم نیاز دارد،
+                  مرتفع سازد.این ایربادز‌ که دارای طراحی منحصر به‌ فردیست، میزان
+                  قدرت بیس بالایی را به کاربران عرضه می‌کند. ظاهر ایربادز های
+                  LT7 فوق العاده زیباست. یک LED بسیار کوچک روی هر کدام از
+                  ایربادزها قرار دارد که نشان‌دهنده‌ی وضعیت است. زمانی‌ که
+                  ایرباد ها را از درون جعبه شارژ بیرون می‌آورید، به‌صورت خودکار
+                  روشن می‌شوند. این محصول ازطریق بلوتوث 5 به دستگاه هوشمند متصل
+                  می‌شود. انتقال امواج بی‌سیم این ایربادز از طریق نسخه‌ی 5
+                  فناوری بلوتوث صورت می‌گیرد.این ایربادز با 4 میکروفون (2 عدد در
+                  هر هدفون) باعث افزایش کیفیت صدا شده شما می توانید با شنیدن
+                  صدای بلند و واضح ، از یک صحبت صوتی شفاف و بدون سر و صدا لذت
+                  ببرید. هر ایربادز دارای باتری داخلی با ظرفیت 30 میلی‌آمپر است
+                  که در مجموع ظرفیت باتری 60 میلی آمپرساعت را به‌ارمغان می‌آورند
+                  این ایربادزها در حالت شارژ کامل توانایی پخش موسیقی و برقراری
+                  تماس را برای 5 ساعت دارد.از طرف دیگر محفظه‌ی شارژ ایربادزها،
+                  دارای یک باتری 300 میلی‌آمپر ساعتی است. این کیس به درگاه USB-C
+                  مجهز شده، این بدین معناست که این ایربادز از قابلیت شارژ سریع
+                  پشتیبانی میکند. مدت‌زمان شارژ کیس شارژ 1.5 ساعت و ایربادزها
+                  نیز 1ساعت است. این ایربادز با داشتن پوشش نانو ، حتی در صورت
+                  عرق کردن پس از یک تمرین سخت ، در برابر آب مقاومت می کند ، که
+                  گزینه ای ایده آل برای تمرینات سخت و عرق آور است. کنترل
+                  عملکردهای LT7 نیز از طریق کنترلرهای لمسی روی هر ایربادز صورت
+                  می‌گیرد.شما به راحتی با لمس ایربادزها میتوانید پخش موسیقی را
+                  فعال یا غیرفعال کنید.
+                </ReadMoreText>
+              </EB_BodyOfProperty>
+            </EB_BodyOfPropertyBox>
+          </EB_PropertyItemBox>
+          {/* intoduction */}
+        </EB_PropertyBox>
+        <EB_PropertyBox>
+          <EB_PropertyItemBox>
+            <Waypoint
+              onLeave={() => {
+                console.log("onLeave مشخصات");
+              }}
+              onEnter={() => console.log("onEnter مشخصات")}
+            />
+            <EB_TitleOfPropertyBox>
+              <Typography className="font-weight-bold" variant="h6">
+                مشخصات
+              </Typography>
+            </EB_TitleOfPropertyBox>
+            <EB_BodyOfPropertyBox>
+              <div className="d-flex justify-content-start align-self-start">
+                <Typography className="font-weight-bold" variant="h6">
+                  مشخصات
+                </Typography>
+              </div>
+              <TableContainer sx={{ marginLeft: "15rem" }}>
+                <Table sx={{ minWidth: 760 }}>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="d-flex">
+                        <Typography
+                          sx={{ maxWidth: "300px", width: "250px" }}
+                          className="text-muted"
+                        >
+                          عمر باتری هدفون در حالت مکالمه
+                        </Typography>
+                        <Typography>۵ ساعت</Typography>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="d-flex">
+                        <Typography
+                          sx={{ maxWidth: "300px", width: "250px" }}
+                          className="text-muted"
+                        >
+                          سایر توضیحات
+                        </Typography>
+                        <Typography>
+                          قابلیت ورز دادن و آماده کردن خمیر همزدن و مخلوط کردن
+                          مواد مختلف
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="d-flex">
+                        <Typography
+                          sx={{ maxWidth: "300px", width: "250px" }}
+                          className="text-muted"
+                        >
+                          پاسخ فرکانسی
+                        </Typography>
+                        <Typography>۲۰-۲۰khz هرتز</Typography>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </EB_BodyOfPropertyBox>
+          </EB_PropertyItemBox>
+        </EB_PropertyBox>
+        <CommentBox container>
+          <Grid item md={3} sm={12}>
+            <CB_TitleBox>
+              <Waypoint
+                onLeave={() => {
+                  console.log("onLeave امتیاز و دیدگاه کاربران");
+                }}
+                onEnter={() => console.log("onEnter امتیاز و دیدگاه کاربران")}
+              />
+              <Typography className="font-weight-bold mb-3" variant="h6">
+                امتیاز و دیدگاه کاربران
+              </Typography>
+              <div
+                style={{
+                  width: "74px",
+                  height: "2.5px",
+                  backgroundColor: "red",
+                }}
+              ></div>
+            </CB_TitleBox>
+            <CB_ScoreAndSortBox>
+              <CB_BigScoreBox>
+                <Typography variant="h4">{"۵"}</Typography>
+
+                <Typography variant="body1">از {"۵"}</Typography>
+              </CB_BigScoreBox>
+              <CB_StarRiteBox>
+                {[1, 2, 3, 4, 5].map((i, index) => (
+                  <Star key={index} fontSize="small" className="fill-yellow " />
+                ))}
+              </CB_StarRiteBox>
+              <Typography variant="caption">
+                شما هم درباره درباره این کالا نظر بدهید
+              </Typography>
+              <MyButton className=" mt-3" variant="outlined">
+                ثبت دیدگاه
+              </MyButton>
+            </CB_ScoreAndSortBox>
+          </Grid>
+          <Grid className="mt-5" item md={9} sm={12}>
+            <div className="w-90 mx-auto">
+              <header>
+                <div className="d-flex justify-content-start align-items-center">
+                  <Badge_v1>{"۵.۰"}</Badge_v1>
+                  <Typography className="font-weight-bold ms-2" variant="h6">
+                    {"از هر نظر عالی"}
+                  </Typography>
+                </div>
+              </header>
+            </div>
+          </Grid>
+        </CommentBox>
+      </EndBox>
     </RootContiner>
   );
 }
