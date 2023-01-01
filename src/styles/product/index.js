@@ -1,4 +1,12 @@
-import { styled, Typography, Box, Grid, Button, Dialog } from "@mui/material";
+import {
+  styled,
+  Typography,
+  Box,
+  Grid,
+  Button,
+  Dialog,
+  useScrollTrigger,
+} from "@mui/material";
 import { DiscountBox } from "../appmain";
 
 export const RootContiner = styled(Box)(() => ({
@@ -197,14 +205,16 @@ export const EndBox = styled(Box)(() => ({
 // }));
 
 export const EB_TitleBox = (props) => {
-  const { onLeaveArea } = props;
-  console.log(onLeaveArea);
+  const { onLeaveArea, children, indexOfTitle } = props;
+  const triger = useScrollTrigger({
+    threshold: 200,
+  });
   return (
     <div
       style={{
         display: "flex",
-        position: onLeaveArea ? "fixed" : "static",
-        top: "10%",
+        position: onLeaveArea ? "sticky" : "static",
+        top: triger ? "10%" : "16%",
         backgroundColor: "#FFFFFF",
         width: "96%",
         left: "2%",
@@ -212,17 +222,25 @@ export const EB_TitleBox = (props) => {
         padding: "10px 0",
       }}
     >
-      {props.children.map((child, item) => {
-        return child;
+      {["معرفی", "مشخصات", "دیدگاه"].map((list, index) => {
+        return (
+          <EB_TitleItemBox
+            isselected={index == indexOfTitle ? "true" : "false"}
+            key={index}
+            variant="body1"
+          >
+            <EB_Title variant="body1">{list}</EB_Title>
+          </EB_TitleItemBox>
+        );
       })}
     </div>
   );
 };
 
-export const EB_TitleItemBox = styled(Box)(() => ({
+export const EB_TitleItemBox = styled(Box)(({ isselected }) => ({
   paddingBottom: "1rem",
   paddingTop: "1rem",
-  borderBottom: "3px solid #ef3c51",
+  borderBottom: isselected == "true" ? "3px solid #ef3c51" : "none",
   marginLeft: "1rem",
   display: "flex",
   justifyContent: "center",
