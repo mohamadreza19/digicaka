@@ -16,7 +16,7 @@ import {
   Typography,
   useScrollTrigger,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useLocalStorage from "react-use-localstorage";
 import { Link } from "react-router-dom";
 import { useImmer } from "use-immer";
@@ -54,6 +54,7 @@ export function Desktop(props) {
     "selected-city",
     "init"
   );
+  
 
   //
   function ScrollTop(props) {
@@ -206,7 +207,8 @@ export function Desktop(props) {
               </ActionButtonBox>
             </ContainerRowOne>
             
-            <ContainerRowTwo className={`mb-3 ${useScrollTrigger({
+            <ContainerRowTwo
+            className={`mb-3 ${useScrollTrigger({
               threshold:200
             })? "d-none" : ""}`}>
               <ListBox>

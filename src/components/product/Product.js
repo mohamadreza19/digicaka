@@ -41,6 +41,7 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  useScrollTrigger,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -132,7 +133,8 @@ export default function Product() {
   const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
   const [IsDialogOpen, SetIsDialogOpen] = useImmer(false);
   const [SelectedImageIndex, setSelectedImageIndex] = useImmer(0);
-  const [onLeave_EB_TitleBox, setOnLeave_EB_TitleBox] = useImmer(false);
+  const [positionOfArea_EB_TitleBox, setPositionOfArea_EB_TitleBox] = useImmer(false);
+  const [indexOfTitle, setIndexOfTitle] = useImmer(0);
   useEffect(
     function fillingPoroduct() {
       const matched = spacialProducts.find((item) => item.name[0] === name);
@@ -149,7 +151,7 @@ export default function Product() {
     },
     [spacialProducts.length > 0]
   );
-
+    
   const StartGrid = () => {
     return (
       <div className="w-100 d-flex mt-4rem">
@@ -571,7 +573,6 @@ export default function Product() {
       </Dialog_v1>
     );
   };
-  console.log(onLeave_EB_TitleBox);
   return (
     <RootContiner>
       <NavStateBox>
@@ -633,42 +634,38 @@ export default function Product() {
           <EndGrid />
         </InfoProduct>
       </Grid>
+     
       <EndBox>
-        <Waypoint
-          onLeave={() => {
-            setOnLeave_EB_TitleBox((draft) => true);
-            console.log("s");
-          }}
-          onEnter={() => setOnLeave_EB_TitleBox((draft) => false)}
-        />
+      
         <EB_TitleBox
-          className="border-bottom"
-          onLeaveArea={onLeave_EB_TitleBox}
+          className={`border-bottom `}
+     
+          hasPassedThreshold={useScrollTrigger({threshold:200})}
+          onLeaveArea={positionOfArea_EB_TitleBox}
         >
-          <EB_TitleItemBox variant="body1">
-            <EB_Title variant="body1">معرفی</EB_Title>
-          </EB_TitleItemBox>
-          <EB_TitleItemBox variant="body1">
-            <EB_Title variant="body1">مشخصات</EB_Title>
-          </EB_TitleItemBox>
-          <EB_TitleItemBox>
-            <EB_Title variant="body1">دیدگاه</EB_Title>
-          </EB_TitleItemBox>
-        </EB_TitleBox>
+          {
+            ["معرفی","مشخصات","دیدگاه"].map((item,index)=>{
+              return (
 
+          <EB_TitleItemBox key={index} indexOfTitle={indexOfTitle} index={index}>
+            <EB_Title variant="body1">{item}</EB_Title>
+          </EB_TitleItemBox>
+              )
+            })
+          }
+        </EB_TitleBox>
+             {/* introduction */}
         <EB_PropertyBox>
-          {/* intoduction */}
+         
           <EB_PropertyItemBox>
-            <Waypoint
-              onLeave={() => {
-                console.log("onLeave معرفی");
-              }}
-              onEnter={() => console.log("onEnter معرفی")}
-            />
+            
             <EB_TitleOfPropertyBox>
+              <Waypoint onLeave={()=>setIndexOfTitle(0)}>
               <Typography className=" font-weight-bold" variant="h6">
                 معرفی
               </Typography>
+              </Waypoint>
+              
             </EB_TitleOfPropertyBox>
             <EB_BodyOfPropertyBox>
               <EB_BodyOfProperty variant="body2">
@@ -703,20 +700,23 @@ export default function Product() {
               </EB_BodyOfProperty>
             </EB_BodyOfPropertyBox>
           </EB_PropertyItemBox>
-          {/* intoduction */}
+          
         </EB_PropertyBox>
+             {/*END introduction */}
         <EB_PropertyBox>
           <EB_PropertyItemBox>
-            <Waypoint
-              onLeave={() => {
-                console.log("onLeave مشخصات");
-              }}
-              onEnter={() => console.log("onEnter مشخصات")}
-            />
+            
             <EB_TitleOfPropertyBox>
+              <Waypoint 
+              onLeave={()=>setIndexOfTitle(1)}
+              onPositionChange={(e)=>console.log(e)} 
+              
+              >
               <Typography className="font-weight-bold" variant="h6">
                 مشخصات
               </Typography>
+              </Waypoint>
+              
             </EB_TitleOfPropertyBox>
             <EB_BodyOfPropertyBox>
               <div className="d-flex justify-content-start align-self-start">
@@ -769,18 +769,20 @@ export default function Product() {
             </EB_BodyOfPropertyBox>
           </EB_PropertyItemBox>
         </EB_PropertyBox>
+
         <CommentBox container>
+       
           <Grid item md={3} sm={12}>
             <CB_TitleBox>
-              <Waypoint
-                onLeave={() => {
-                  console.log("onLeave امتیاز و دیدگاه کاربران");
-                }}
-                onEnter={() => console.log("onEnter امتیاز و دیدگاه کاربران")}
-              />
+              <Waypoint 
+              onLeave={()=>setIndexOfTitle(2)}
+             
+              >
               <Typography className="font-weight-bold mb-3" variant="h6">
                 امتیاز و دیدگاه کاربران
               </Typography>
+              </Waypoint>
+              
               <div
                 style={{
                   width: "74px",
@@ -818,6 +820,17 @@ export default function Product() {
                   </Typography>
                 </div>
               </header>
+              <body>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra augue id eros tempor dignissim. Donec pretium, ex sed vulputate rutrum, nunc diam suscipit quam, sed placerat enim risus id libero. Integer vestibulum odio in bibendum accumsan. Maecenas id odio in orci ultricies tempus. Donec eu neque eget ante fermentum porta. Cras convallis mauris dui, at mattis turpis ultrices sit amet. Aliquam ut lacus eget tellus porttitor tempus. Curabitur id tellus in libero gravida auctor. Ut viverra diam velit, eu commodo dolor imperdiet a. Nullam ut eleifend ex, non lacinia ante. Nam nec cursus eros. Mauris nec arcu eget massa tincidunt semper. Praesent ut mauris at augue pulvinar euismod eu non enim.
+
+Suspendisse accumsan euismod justo, vulputate vehicula eros iaculis quis. Proin egestas erat sit amet tempor venenatis. Vestibulum rhoncus, dui eu fermentum fermentum, augue orci pellentesque eros, in sollicitudin ligula felis eget elit. Duis eget quam eu leo ultricies aliquam. Mauris congue eget nunc quis semper. In hac habitasse platea dictumst. Vestibulum sagittis, ex et aliquet eleifend, neque dui mattis tellus, nec hendrerit arcu nibh sed odio. Aliquam a pretium tellus.
+
+Donec felis mauris, rutrum ac libero quis, iaculis auctor felis. Nam suscipit metus nec dui iaculis, at pretium elit feugiat. Nulla mollis sit amet eros non euismod. Sed vel lorem facilisis, dignissim arcu ut, tincidunt turpis. Morbi justo nulla, consectetur nec elit vitae, sodales iaculis metus. Nulla molestie rutrum vulputate. Pellentesque venenatis nunc ut mauris imperdiet, vel luctus diam semper. Aliquam in lectus tempus, faucibus sem at, bibendum risus. Praesent lacinia odio non risus sodales rhoncus. Mauris quis eleifend mi. Curabitur libero tellus, lacinia vitae gravida in, iaculis non enim. Nulla convallis enim sapien, sit amet convallis dui lobortis eget. Cras tempor eros nisi, sit amet lacinia libero facilisis sit amet.
+
+Nunc viverra turpis at porta gravida. Donec id hendrerit dolor. Morbi auctor justo quis leo viverra, eu ultrices magna pulvinar. Nulla ullamcorper odio id nulla tincidunt tincidunt. Nullam porttitor justo nibh, nec vehicula enim ultrices placerat. Praesent urna metus, maximus vitae augue vel, malesuada dapibus tellus. Etiam aliquam magna tincidunt, luctus neque vel, molestie lorem. Maecenas nunc arcu, sollicitudin lacinia magna a, tincidunt fermentum felis. Quisque ullamcorper mattis dui id condimentum. Suspendisse in feugiat mauris.
+
+Aliquam ultricies rhoncus ligula quis interdum. Integer lobortis ut ligula id egestas. Proin eleifend lorem a eros mattis consectetur. Proin elementum pharetra mauris at blandit. Morbi quis tellus in diam accumsan faucibus. Ut et elit ut sem rhoncus vehicula non in ante. Vestibulum pellentesque, lorem ac pharetra suscipit, lacus nisi hendrerit odio, sed placerat eros velit in justo. Nullam posuere, risus at placerat molestie, magna elit vehicula diam, sit amet varius arcu odio vel ex. Nunc magna mi, vulputate eget nibh eu, hendrerit tincidunt turpis. Fusce in porttitor ex. Duis est lectus, lobortis quis ante quis, maximus efficitur odio. Etiam eget ullamcorper sem.
+              </body>
             </div>
           </Grid>
         </CommentBox>

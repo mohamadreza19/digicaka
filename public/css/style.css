@@ -226,6 +226,9 @@ svg {
 .border-bottom {
   border-bottom: 1px solid #a1a3a8;
 }
+.border-bottom_v1 {
+  border-bottom: 3px solid #F0F0F1
+}
 .swiper {
   direction: ltr;
   width: 100%;

@@ -197,14 +197,22 @@ export const EndBox = styled(Box)(() => ({
 // }));
 
 export const EB_TitleBox = (props) => {
-  const { onLeaveArea } = props;
-  console.log(onLeaveArea);
+  const { onLeaveArea,className,hasPassedThreshold } = props;
+   const position =true
+
+   console.log("onLeaveArea"+ onLeaveArea)
   return (
     <div
+    className={className}
       style={{
         display: "flex",
-        position: onLeaveArea ? "fixed" : "static",
-        top: "10%",
+        position: position ? "fixed" : "static",
+        top:
+         hasPassedThreshold? 
+         "10%"  
+         :
+         "20%"
+        ,
         backgroundColor: "#FFFFFF",
         width: "96%",
         left: "2%",
@@ -219,19 +227,55 @@ export const EB_TitleBox = (props) => {
   );
 };
 
-export const EB_TitleItemBox = styled(Box)(() => ({
-  paddingBottom: "1rem",
-  paddingTop: "1rem",
-  borderBottom: "3px solid #ef3c51",
-  marginLeft: "1rem",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "60px",
-  height: "24px",
-  minWidth: "60px",
-  minHeight: "24px",
-}));
+// export const EB_TitleItemBox = styled(Box)(() => ({
+//   paddingBottom: "1rem",
+//   paddingTop: "1rem",
+//   borderBottom: "3px solid #ef3c51",
+//   marginLeft: "1rem",
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   width: "60px",
+//   height: "24px",
+//   minWidth: "60px",
+//   minHeight: "24px",
+// }));
+export const EB_TitleItemBox = (props)=>{
+  const {indexOfTitle,children,index} = props
+  if(index== indexOfTitle) {
+    console.log(index)
+  } 
+  
+  let dynamicStyle={
+    paddingBottom: "1rem",
+    paddingTop: "1rem",
+    borderBottom: "3px solid #ef3c51",
+    marginLeft: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "60px",
+    height: "24px",
+    minWidth: "60px",
+    minHeight: "24px",
+    }
+   if(indexOfTitle===index){
+   
+    dynamicStyle=  {...dynamicStyle,
+      borderBottom:'3px solid #ef3c51'
+    }
+   } else {
+    dynamicStyle=  {...dynamicStyle,
+      borderBottom:'none'
+    }
+   }
+ 
+  return <div style={dynamicStyle}>
+    {
+      children
+    }
+  </div>
+}
 export const EB_Title = styled(Typography)(() => ({}));
 //EB_PropertyBox
 

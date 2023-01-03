@@ -67,7 +67,7 @@ export default function App() {
           }}
         >
           <Container>
-            <AppBar />
+            {/* <AppBar /> */}
 
             <Routes>
               <Route path="/" element={<AppMain />} />
