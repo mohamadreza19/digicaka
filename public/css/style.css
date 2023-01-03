@@ -113,6 +113,10 @@ svg {
 .w-28 {
   width: 28%;
 }
+.w-80 {
+  width: 80%;
+ 
+}
 .w-96 {
   width: 96%;
   margin: 0 auto;
@@ -228,6 +232,9 @@ svg {
 }
 .border-bottom_v1 {
   border-bottom: 3px solid #F0F0F1
+}
+.border-bottom_v2 {
+  border-bottom: 1px solid #F0F0F1
 }
 .swiper {
   direction: ltr;

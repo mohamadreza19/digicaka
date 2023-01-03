@@ -1,4 +1,12 @@
-import { styled, Typography, Box, Grid, Button, Dialog } from "@mui/material";
+import {
+  styled,
+  Typography,
+  Box,
+  Grid,
+  Button,
+  Dialog,
+  useScrollTrigger,
+} from "@mui/material";
 import { DiscountBox } from "../appmain";
 
 export const RootContiner = styled(Box)(() => ({
@@ -197,22 +205,16 @@ export const EndBox = styled(Box)(() => ({
 // }));
 
 export const EB_TitleBox = (props) => {
-  const { onLeaveArea,className,hasPassedThreshold } = props;
-   const position =true
-
-   console.log("onLeaveArea"+ onLeaveArea)
+  const { onLeaveArea, children, indexOfTitle } = props;
+  const triger = useScrollTrigger({
+    threshold: 200,
+  });
   return (
     <div
-    className={className}
       style={{
         display: "flex",
-        position: position ? "fixed" : "static",
-        top:
-         hasPassedThreshold? 
-         "10%"  
-         :
-         "20%"
-        ,
+        position: onLeaveArea ? "sticky" : "static",
+        top: triger ? "10%" : "20%",
         backgroundColor: "#FFFFFF",
         width: "96%",
         left: "2%",
@@ -220,62 +222,34 @@ export const EB_TitleBox = (props) => {
         padding: "10px 0",
       }}
     >
-      {props.children.map((child, item) => {
-        return child;
+      {["معرفی", "مشخصات", "دیدگاه"].map((list, index) => {
+        return (
+          <EB_TitleItemBox
+            isselected={index == indexOfTitle ? "true" : "false"}
+            key={index}
+            variant="body1"
+          >
+            <EB_Title variant="body1">{list}</EB_Title>
+          </EB_TitleItemBox>
+        );
       })}
     </div>
   );
 };
 
-// export const EB_TitleItemBox = styled(Box)(() => ({
-//   paddingBottom: "1rem",
-//   paddingTop: "1rem",
-//   borderBottom: "3px solid #ef3c51",
-//   marginLeft: "1rem",
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   width: "60px",
-//   height: "24px",
-//   minWidth: "60px",
-//   minHeight: "24px",
-// }));
-export const EB_TitleItemBox = (props)=>{
-  const {indexOfTitle,children,index} = props
-  if(index== indexOfTitle) {
-    console.log(index)
-  } 
-  
-  let dynamicStyle={
-    paddingBottom: "1rem",
-    paddingTop: "1rem",
-    borderBottom: "3px solid #ef3c51",
-    marginLeft: "1rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "60px",
-    height: "24px",
-    minWidth: "60px",
-    minHeight: "24px",
-    }
-   if(indexOfTitle===index){
-   
-    dynamicStyle=  {...dynamicStyle,
-      borderBottom:'3px solid #ef3c51'
-    }
-   } else {
-    dynamicStyle=  {...dynamicStyle,
-      borderBottom:'none'
-    }
-   }
- 
-  return <div style={dynamicStyle}>
-    {
-      children
-    }
-  </div>
-}
+export const EB_TitleItemBox = styled(Box)(({ isselected }) => ({
+  paddingBottom: "1rem",
+  paddingTop: "1rem",
+  borderBottom: isselected == "true" ? "3px solid #ef3c51" : "none",
+  marginLeft: "1rem",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "60px",
+  height: "24px",
+  minWidth: "60px",
+  minHeight: "24px",
+}));
 export const EB_Title = styled(Typography)(() => ({}));
 //EB_PropertyBox
 
@@ -359,3 +333,20 @@ export const Badge_v1 = styled(Box)(() => ({
   alignItems: "center",
   fontSize: "0.9rem",
 }));
+export const Badge_CommentBox = (props)=>{
+  const {children} = props
+   return (
+    <div style={{
+      width:'50px',
+      height:"20px",
+      backgroundColor:'#F2F2F2',
+      color:'#767A99',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
+      marginRight:'1rem'
+    }}>
+      {children}
+    </div>
+   )
+}

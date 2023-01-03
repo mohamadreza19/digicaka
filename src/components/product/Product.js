@@ -58,6 +58,7 @@ import {
   TomanBox,
 } from "../../styles/appmain";
 import {
+  Badge_CommentBox,
   Badge_v1,
   Button,
   Button_v1,
@@ -118,6 +119,8 @@ import { Tab } from "bootstrap";
 import ReactShowMoreText from "react-show-more-text";
 import { ReadMoreText } from "./layout/ReadMoreText";
 import { Waypoint } from "react-waypoint";
+import SeparableTitles from "./layout/SeparableTitles";
+import { ReadMoreProperty } from "./layout/ReadMoreProperty";
 export default function Product() {
   const { name } = useParams();
   const { spacialProducts } = useContext(UiContext);
@@ -133,8 +136,12 @@ export default function Product() {
   const [selectedColorOrSize, setSelectedColorOrSize] = useImmer(["init"]);
   const [IsDialogOpen, SetIsDialogOpen] = useImmer(false);
   const [SelectedImageIndex, setSelectedImageIndex] = useImmer(0);
-  const [positionOfArea_EB_TitleBox, setPositionOfArea_EB_TitleBox] = useImmer(false);
+  const [onLeave_EB_TitleBox, setOnLeave_EB_TitleBox] = useImmer(false);
   const [indexOfTitle, setIndexOfTitle] = useImmer(0);
+  const triger = useScrollTrigger({
+    threshold: 200,
+  });
+
   useEffect(
     function fillingPoroduct() {
       const matched = spacialProducts.find((item) => item.name[0] === name);
@@ -151,7 +158,7 @@ export default function Product() {
     },
     [spacialProducts.length > 0]
   );
-    
+
   const StartGrid = () => {
     return (
       <div className="w-100 d-flex mt-4rem">
@@ -573,6 +580,7 @@ export default function Product() {
       </Dialog_v1>
     );
   };
+
   return (
     <RootContiner>
       <NavStateBox>
@@ -634,155 +642,122 @@ export default function Product() {
           <EndGrid />
         </InfoProduct>
       </Grid>
-     
       <EndBox>
-      
+        <Waypoint
+          onLeave={() => {
+            setOnLeave_EB_TitleBox((draft) => true);
+          }}
+          onEnter={() => setOnLeave_EB_TitleBox((draft) => false)}
+        />
         <EB_TitleBox
-          className={`border-bottom `}
-     
-          hasPassedThreshold={useScrollTrigger({threshold:200})}
-          onLeaveArea={positionOfArea_EB_TitleBox}
-        >
-          {
-            ["معرفی","مشخصات","دیدگاه"].map((item,index)=>{
-              return (
+          className="border-bottom"
+          onLeaveArea={onLeave_EB_TitleBox}
+          indexOfTitle={indexOfTitle}
+        />
 
-          <EB_TitleItemBox key={index} indexOfTitle={indexOfTitle} index={index}>
-            <EB_Title variant="body1">{item}</EB_Title>
-          </EB_TitleItemBox>
-              )
-            })
-          }
-        </EB_TitleBox>
-             {/* introduction */}
+        {/* introduction */}
         <EB_PropertyBox>
-         
-          <EB_PropertyItemBox>
-            
-            <EB_TitleOfPropertyBox>
-              <Waypoint onLeave={()=>setIndexOfTitle(0)}>
-              <Typography className=" font-weight-bold" variant="h6">
-                معرفی
-              </Typography>
-              </Waypoint>
-              
-            </EB_TitleOfPropertyBox>
-            <EB_BodyOfPropertyBox>
-              <EB_BodyOfProperty variant="body2">
-                <ReadMoreText>
-                  در برند لیتو سعی شده است که تمامی محصولات مطابق با استاندارد
-                  های جهانی تولید شوند. لیتو می‌خواهد با ایربادز LT7 تمامی
-                  نیازهایی را که کاربر از یک ایربادز کاملا بدون سیم نیاز دارد،
-                  مرتفع سازد.این ایربادز‌ که دارای طراحی منحصر به‌ فردیست، میزان
-                  قدرت بیس بالایی را به کاربران عرضه می‌کند. ظاهر ایربادز های
-                  LT7 فوق العاده زیباست. یک LED بسیار کوچک روی هر کدام از
-                  ایربادزها قرار دارد که نشان‌دهنده‌ی وضعیت است. زمانی‌ که
-                  ایرباد ها را از درون جعبه شارژ بیرون می‌آورید، به‌صورت خودکار
-                  روشن می‌شوند. این محصول ازطریق بلوتوث 5 به دستگاه هوشمند متصل
-                  می‌شود. انتقال امواج بی‌سیم این ایربادز از طریق نسخه‌ی 5
-                  فناوری بلوتوث صورت می‌گیرد.این ایربادز با 4 میکروفون (2 عدد در
-                  هر هدفون) باعث افزایش کیفیت صدا شده شما می توانید با شنیدن
-                  صدای بلند و واضح ، از یک صحبت صوتی شفاف و بدون سر و صدا لذت
-                  ببرید. هر ایربادز دارای باتری داخلی با ظرفیت 30 میلی‌آمپر است
-                  که در مجموع ظرفیت باتری 60 میلی آمپرساعت را به‌ارمغان می‌آورند
-                  این ایربادزها در حالت شارژ کامل توانایی پخش موسیقی و برقراری
-                  تماس را برای 5 ساعت دارد.از طرف دیگر محفظه‌ی شارژ ایربادزها،
-                  دارای یک باتری 300 میلی‌آمپر ساعتی است. این کیس به درگاه USB-C
-                  مجهز شده، این بدین معناست که این ایربادز از قابلیت شارژ سریع
-                  پشتیبانی میکند. مدت‌زمان شارژ کیس شارژ 1.5 ساعت و ایربادزها
-                  نیز 1ساعت است. این ایربادز با داشتن پوشش نانو ، حتی در صورت
-                  عرق کردن پس از یک تمرین سخت ، در برابر آب مقاومت می کند ، که
-                  گزینه ای ایده آل برای تمرینات سخت و عرق آور است. کنترل
-                  عملکردهای LT7 نیز از طریق کنترلرهای لمسی روی هر ایربادز صورت
-                  می‌گیرد.شما به راحتی با لمس ایربادزها میتوانید پخش موسیقی را
-                  فعال یا غیرفعال کنید.
-                </ReadMoreText>
-              </EB_BodyOfProperty>
-            </EB_BodyOfPropertyBox>
-          </EB_PropertyItemBox>
-          
+          <Waypoint
+            onPositionChange={(e) => {
+              setIndexOfTitle(0);
+            }}
+            onLeave={(e) => {
+              console.log(e.currentPosition)
+              if (e.currentPosition == "above") {
+                setIndexOfTitle(1);
+              }
+            }}
+          >
+            <EB_PropertyItemBox>
+              <EB_TitleOfPropertyBox>
+                <Typography className=" font-weight-bold" variant="h6">
+                  معرفی
+                </Typography>
+              </EB_TitleOfPropertyBox>
+              <EB_BodyOfPropertyBox>
+                <EB_BodyOfProperty variant="body2">
+                  <ReadMoreText>
+                    در برند لیتو سعی شده است که تمامی محصولات مطابق با استاندارد
+                    های جهانی تولید شوند. لیتو می‌خواهد با ایربادز LT7 تمامی
+                    نیازهایی را که کاربر از یک ایربادز کاملا بدون سیم نیاز دارد،
+                    مرتفع سازد.این ایربادز‌ که دارای طراحی منحصر به‌ فردیست،
+                    میزان قدرت بیس بالایی را به کاربران عرضه می‌کند. ظاهر
+                    ایربادز های LT7 فوق العاده زیباست. یک LED بسیار کوچک روی هر
+                    کدام از ایربادزها قرار دارد که نشان‌دهنده‌ی وضعیت است.
+                    زمانی‌ که ایرباد ها را از درون جعبه شارژ بیرون می‌آورید،
+                    به‌صورت خودکار روشن می‌شوند. این محصول ازطریق بلوتوث 5 به
+                    دستگاه هوشمند متصل می‌شود. انتقال امواج بی‌سیم این ایربادز
+                    از طریق نسخه‌ی 5 فناوری بلوتوث صورت می‌گیرد.این ایربادز با 4
+                    میکروفون (2 عدد در هر هدفون) باعث افزایش کیفیت صدا شده شما
+                    می توانید با شنیدن صدای بلند و واضح ، از یک صحبت صوتی شفاف و
+                    بدون سر و صدا لذت ببرید. هر ایربادز دارای باتری داخلی با
+                    ظرفیت 30 میلی‌آمپر است که در مجموع ظرفیت باتری 60 میلی
+                    آمپرساعت را به‌ارمغان می‌آورند این ایربادزها در حالت شارژ
+                    کامل توانایی پخش موسیقی و برقراری تماس را برای 5 ساعت
+                    دارد.از طرف دیگر محفظه‌ی شارژ ایربادزها، دارای یک باتری 300
+                    میلی‌آمپر ساعتی است. این کیس به درگاه USB-C مجهز شده، این
+                    بدین معناست که این ایربادز از قابلیت شارژ سریع پشتیبانی
+                    میکند. مدت‌زمان شارژ کیس شارژ 1.5 ساعت و ایربادزها نیز 1ساعت
+                    است. این ایربادز با داشتن پوشش نانو ، حتی در صورت عرق کردن
+                    پس از یک تمرین سخت ، در برابر آب مقاومت می کند ، که گزینه ای
+                    ایده آل برای تمرینات سخت و عرق آور است. کنترل عملکردهای LT7
+                    نیز از طریق کنترلرهای لمسی روی هر ایربادز صورت می‌گیرد.شما
+                    به راحتی با لمس ایربادزها میتوانید پخش موسیقی را فعال یا
+                    غیرفعال کنید.
+                  </ReadMoreText>
+                </EB_BodyOfProperty>
+              </EB_BodyOfPropertyBox>
+            </EB_PropertyItemBox>
+          </Waypoint>
         </EB_PropertyBox>
-             {/*END introduction */}
+        {/* introduction */}
+
         <EB_PropertyBox>
-          <EB_PropertyItemBox>
-            
-            <EB_TitleOfPropertyBox>
-              <Waypoint 
-              onLeave={()=>setIndexOfTitle(1)}
-              onPositionChange={(e)=>console.log(e)} 
+          <Waypoint
+            onPositionChange={(e) => {
+              if(e.currentPosition != "below"){
+                setIndexOfTitle(1);
+                
+              }
+              // setIndexOfTitle(1);
+            }}
+            onLeave={(e) => {
+              if (e.currentPosition == "above" ) {
               
-              >
-              <Typography className="font-weight-bold" variant="h6">
-                مشخصات
-              </Typography>
-              </Waypoint>
-              
-            </EB_TitleOfPropertyBox>
-            <EB_BodyOfPropertyBox>
-              <div className="d-flex justify-content-start align-self-start">
+                setIndexOfTitle(2);
+              }
+
+             
+            }}
+          >
+            <EB_PropertyItemBox>
+              <EB_TitleOfPropertyBox>
                 <Typography className="font-weight-bold" variant="h6">
                   مشخصات
                 </Typography>
-              </div>
-              <TableContainer sx={{ marginLeft: "15rem" }}>
-                <Table sx={{ minWidth: 760 }}>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="d-flex">
-                        <Typography
-                          sx={{ maxWidth: "300px", width: "250px" }}
-                          className="text-muted"
-                        >
-                          عمر باتری هدفون در حالت مکالمه
-                        </Typography>
-                        <Typography>۵ ساعت</Typography>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="d-flex">
-                        <Typography
-                          sx={{ maxWidth: "300px", width: "250px" }}
-                          className="text-muted"
-                        >
-                          سایر توضیحات
-                        </Typography>
-                        <Typography>
-                          قابلیت ورز دادن و آماده کردن خمیر همزدن و مخلوط کردن
-                          مواد مختلف
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="d-flex">
-                        <Typography
-                          sx={{ maxWidth: "300px", width: "250px" }}
-                          className="text-muted"
-                        >
-                          پاسخ فرکانسی
-                        </Typography>
-                        <Typography>۲۰-۲۰khz هرتز</Typography>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </EB_BodyOfPropertyBox>
-          </EB_PropertyItemBox>
+              </EB_TitleOfPropertyBox>
+
+              <EB_BodyOfPropertyBox>
+                <div className="d-flex justify-content-start align-self-start">
+                  <Typography className="font-weight-bold" variant="h6">
+                    مشخصات
+                  </Typography>
+                </div>
+                <TableContainer sx={{ marginLeft: "15rem" }}>
+                  <ReadMoreProperty/>
+                </TableContainer>
+              </EB_BodyOfPropertyBox>
+            </EB_PropertyItemBox>
+          </Waypoint>
         </EB_PropertyBox>
 
         <CommentBox container>
-       
           <Grid item md={3} sm={12}>
             <CB_TitleBox>
-              <Waypoint 
-              onLeave={()=>setIndexOfTitle(2)}
-             
-              >
+              <Waypoint onLeave={() => {}} />
               <Typography className="font-weight-bold mb-3" variant="h6">
                 امتیاز و دیدگاه کاربران
               </Typography>
-              </Waypoint>
-              
               <div
                 style={{
                   width: "74px",
@@ -811,27 +786,40 @@ export default function Product() {
             </CB_ScoreAndSortBox>
           </Grid>
           <Grid className="mt-5" item md={9} sm={12}>
-            <div className="w-90 mx-auto">
+            {[1,2,3].map((comment,index)=>{
+              
+              return(
+            <div key={index} className={`w-90 mx-auto d-flex flex-column justify-content-center pb-4 ${index !==0 ? 'mt-4':' '} border-bottom`}>
               <header>
-                <div className="d-flex justify-content-start align-items-center">
+                <div className="d-flex justify-content-start align-items-center w-100 ">
                   <Badge_v1>{"۵.۰"}</Badge_v1>
                   <Typography className="font-weight-bold ms-2" variant="h6">
                     {"از هر نظر عالی"}
                   </Typography>
                 </div>
               </header>
-              <body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra augue id eros tempor dignissim. Donec pretium, ex sed vulputate rutrum, nunc diam suscipit quam, sed placerat enim risus id libero. Integer vestibulum odio in bibendum accumsan. Maecenas id odio in orci ultricies tempus. Donec eu neque eget ante fermentum porta. Cras convallis mauris dui, at mattis turpis ultrices sit amet. Aliquam ut lacus eget tellus porttitor tempus. Curabitur id tellus in libero gravida auctor. Ut viverra diam velit, eu commodo dolor imperdiet a. Nullam ut eleifend ex, non lacinia ante. Nam nec cursus eros. Mauris nec arcu eget massa tincidunt semper. Praesent ut mauris at augue pulvinar euismod eu non enim.
-
-Suspendisse accumsan euismod justo, vulputate vehicula eros iaculis quis. Proin egestas erat sit amet tempor venenatis. Vestibulum rhoncus, dui eu fermentum fermentum, augue orci pellentesque eros, in sollicitudin ligula felis eget elit. Duis eget quam eu leo ultricies aliquam. Mauris congue eget nunc quis semper. In hac habitasse platea dictumst. Vestibulum sagittis, ex et aliquet eleifend, neque dui mattis tellus, nec hendrerit arcu nibh sed odio. Aliquam a pretium tellus.
-
-Donec felis mauris, rutrum ac libero quis, iaculis auctor felis. Nam suscipit metus nec dui iaculis, at pretium elit feugiat. Nulla mollis sit amet eros non euismod. Sed vel lorem facilisis, dignissim arcu ut, tincidunt turpis. Morbi justo nulla, consectetur nec elit vitae, sodales iaculis metus. Nulla molestie rutrum vulputate. Pellentesque venenatis nunc ut mauris imperdiet, vel luctus diam semper. Aliquam in lectus tempus, faucibus sem at, bibendum risus. Praesent lacinia odio non risus sodales rhoncus. Mauris quis eleifend mi. Curabitur libero tellus, lacinia vitae gravida in, iaculis non enim. Nulla convallis enim sapien, sit amet convallis dui lobortis eget. Cras tempor eros nisi, sit amet lacinia libero facilisis sit amet.
-
-Nunc viverra turpis at porta gravida. Donec id hendrerit dolor. Morbi auctor justo quis leo viverra, eu ultrices magna pulvinar. Nulla ullamcorper odio id nulla tincidunt tincidunt. Nullam porttitor justo nibh, nec vehicula enim ultrices placerat. Praesent urna metus, maximus vitae augue vel, malesuada dapibus tellus. Etiam aliquam magna tincidunt, luctus neque vel, molestie lorem. Maecenas nunc arcu, sollicitudin lacinia magna a, tincidunt fermentum felis. Quisque ullamcorper mattis dui id condimentum. Suspendisse in feugiat mauris.
-
-Aliquam ultricies rhoncus ligula quis interdum. Integer lobortis ut ligula id egestas. Proin eleifend lorem a eros mattis consectetur. Proin elementum pharetra mauris at blandit. Morbi quis tellus in diam accumsan faucibus. Ut et elit ut sem rhoncus vehicula non in ante. Vestibulum pellentesque, lorem ac pharetra suscipit, lacus nisi hendrerit odio, sed placerat eros velit in justo. Nullam posuere, risus at placerat molestie, magna elit vehicula diam, sit amet varius arcu odio vel ex. Nunc magna mi, vulputate eget nibh eu, hendrerit tincidunt turpis. Fusce in porttitor ex. Duis est lectus, lobortis quis ante quis, maximus efficitur odio. Etiam eget ullamcorper sem.
-              </body>
+              <div className="w-90 mt-4 ms-5 d-flex flex-column justify-content-start align-items-start ">
+                <main className=" d-flex justify-content-start align-items-center pb-2 border-bottom_v2 w-100">
+                <PersionNumber_v2 variant="caption">
+                  <span>{'27'}</span>
+                  <span className="ms-1">{'ابان'}</span>
+                  <span className="ms-1">{'1400'}</span>
+                  <span className="ms-1">.</span>
+                  <span className="ms-1">{'مرضیه برزگر مرادی'}</span>
+                </PersionNumber_v2>
+                <Badge_CommentBox ><Typography variant="caption">{'خریدار'}</Typography></Badge_CommentBox>
+                </main>
+                    <section className="mt-4 border-bottom_v2  w-100 pb-2">
+                      <Typography variant="body1">
+                      برای نوجوانان عالیه
+                      </Typography>
+                    </section>
+              </div>
+             
             </div>
+              )
+            })}
+            
           </Grid>
         </CommentBox>
       </EndBox>
