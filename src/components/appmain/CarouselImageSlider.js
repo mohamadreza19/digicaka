@@ -43,6 +43,7 @@ export function CarouselImageSlider() {
         navigation={true}
         onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
+       
       >
         {data.map((item, index) => {
           console.log(item);

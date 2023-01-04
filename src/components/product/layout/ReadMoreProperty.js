@@ -1,11 +1,12 @@
-import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
+import { Button, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material"
 import { useState } from "react"
+import { BsChevronLeft } from "react-icons/bs"
 
 
 
 
 export const ReadMoreProperty = ({children})=> {
-    const [isMore,setIsmore]= useState(true)
+    const [isMore,setIsmore]= useState(false)
     const list = [
         [
             "عمر باتری هدفون در حالت مکالمه",
@@ -29,11 +30,15 @@ export const ReadMoreProperty = ({children})=> {
             "۲۰-۲۰khz هرتز"
         ]
     ]
-
+     
+      
+     
+      
     const Child = ()=> {
-                if(isMore) {
-                    list.map((item,index)=>{
-                        if(index <=3)
+                if(!isMore) {
+                  return  Object.entries(children).map((item,index)=>{
+                        if(index <=2) {
+                          
                         return(
                             <TableRow key={index}>
                             <TableCell className="d-flex">
@@ -47,9 +52,10 @@ export const ReadMoreProperty = ({children})=> {
                             </TableCell>
                           </TableRow>
                         )    
+                        }
                     })
                 } else {
-                    list.map((item,index)=>{
+                  return    Object.entries(children).map((item,index)=>{
                         return(
                             <TableRow key={index}>
                             <TableCell className="d-flex">
@@ -68,23 +74,31 @@ export const ReadMoreProperty = ({children})=> {
     }
 
         return(
-            <Table sx={{ minWidth: 760 }}>
+          <div className="d-flex flex-column">
+          <TableContainer sx={{  }}>
+             <Table sx={{ minWidth: 760 }}>
                     <TableBody>
-                      <Child/>
-                      {/* <TableRow >
-                        <TableCell className="d-flex">
-                          <Typography
-                            sx={{ maxWidth: "300px", width: "250px" }}
-                            className="text-muted"
-                          >
-                            عمر باتری هدفون در حالت مکالمه
-                          </Typography>
-                          <Typography>۵ ساعت</Typography>
-                        </TableCell>
-                      </TableRow> */}
-                      
+                      <Child/> 
                     </TableBody>
                   </Table>
+          </TableContainer>
+          <div>
+            <Button
+                      onClick={() => {
+                       setIsmore((draft) => {
+                        return !draft;
+                        });
+                      }}
+                      className="W
+                      isReadMoreShown-btn"
+                    >
+                  {!isMore ? "بیشتر" : "کمتر"}
+                  {/* <ArrowBackIos fontSize="small" />
+                   */}
+                      <BsChevronLeft   className=".fill-blue-info" />
+                    </Button>
+          </div>
+          </div>
             
         )
 }

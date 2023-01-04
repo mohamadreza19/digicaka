@@ -163,6 +163,17 @@ export function HandllyCarousel() {
                 draf.isEnd = swiper.isEnd;
               });
             }}
+            breakpoints= {
+              {
+                576: {
+                  // width: 576,
+                  slidesPerView: 4,
+                },
+                1290:{
+                  slidesPerView:6
+                }
+              }
+            }
           >
             <RightArrow />
             {/* right item */}

@@ -1,7 +1,12 @@
+
 import { EB_Title, EB_TitleItemBox } from "../../../styles/product";
 
 export default function SeparableTitles() {
-  const lists = ["معرفی", "مشخصات", "دیدگاه"];
+  const lists = [
+  ["معرفی"], 
+    ["مشخصات"],
+     ["دیدگاه"]
+    ];
   return (
     <div>
       {lists.map((list, index) => {

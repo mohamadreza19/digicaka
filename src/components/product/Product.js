@@ -113,10 +113,7 @@ import {
   SliderProductRootBox,
 } from "../../styles/product";
 
-import ReactImageZoom from "react-image-zoom";
 import { SideBySideMagnifier } from "react-image-magnifiers";
-import { Tab } from "bootstrap";
-import ReactShowMoreText from "react-show-more-text";
 import { ReadMoreText } from "./layout/ReadMoreText";
 import { Waypoint } from "react-waypoint";
 import SeparableTitles from "./layout/SeparableTitles";
@@ -154,6 +151,7 @@ export default function Product() {
         // [0][1] for have first ficked size
         "availableSizes" in matched &&
           setSelectedColorOrSize(() => matched.availableSizes[0]);
+          console.log(matched)
       }
     },
     [spacialProducts.length > 0]
@@ -308,7 +306,7 @@ export default function Product() {
     };
     const PropertyBox = () => {
       if ("property" in product) {
-        const keyAndValue = Object.entries(product.property);
+        const keyAndValue = Object.entries(product.property).slice(0,3)
 
         return (
           <div
@@ -656,7 +654,7 @@ export default function Product() {
         />
 
         {/* introduction */}
-        <EB_PropertyBox>
+        <EB_PropertyBox id="introduction-box">
           <Waypoint
             onPositionChange={(e) => {
               setIndexOfTitle(0);
@@ -676,35 +674,11 @@ export default function Product() {
               </EB_TitleOfPropertyBox>
               <EB_BodyOfPropertyBox>
                 <EB_BodyOfProperty variant="body2">
-                  <ReadMoreText>
-                    در برند لیتو سعی شده است که تمامی محصولات مطابق با استاندارد
-                    های جهانی تولید شوند. لیتو می‌خواهد با ایربادز LT7 تمامی
-                    نیازهایی را که کاربر از یک ایربادز کاملا بدون سیم نیاز دارد،
-                    مرتفع سازد.این ایربادز‌ که دارای طراحی منحصر به‌ فردیست،
-                    میزان قدرت بیس بالایی را به کاربران عرضه می‌کند. ظاهر
-                    ایربادز های LT7 فوق العاده زیباست. یک LED بسیار کوچک روی هر
-                    کدام از ایربادزها قرار دارد که نشان‌دهنده‌ی وضعیت است.
-                    زمانی‌ که ایرباد ها را از درون جعبه شارژ بیرون می‌آورید،
-                    به‌صورت خودکار روشن می‌شوند. این محصول ازطریق بلوتوث 5 به
-                    دستگاه هوشمند متصل می‌شود. انتقال امواج بی‌سیم این ایربادز
-                    از طریق نسخه‌ی 5 فناوری بلوتوث صورت می‌گیرد.این ایربادز با 4
-                    میکروفون (2 عدد در هر هدفون) باعث افزایش کیفیت صدا شده شما
-                    می توانید با شنیدن صدای بلند و واضح ، از یک صحبت صوتی شفاف و
-                    بدون سر و صدا لذت ببرید. هر ایربادز دارای باتری داخلی با
-                    ظرفیت 30 میلی‌آمپر است که در مجموع ظرفیت باتری 60 میلی
-                    آمپرساعت را به‌ارمغان می‌آورند این ایربادزها در حالت شارژ
-                    کامل توانایی پخش موسیقی و برقراری تماس را برای 5 ساعت
-                    دارد.از طرف دیگر محفظه‌ی شارژ ایربادزها، دارای یک باتری 300
-                    میلی‌آمپر ساعتی است. این کیس به درگاه USB-C مجهز شده، این
-                    بدین معناست که این ایربادز از قابلیت شارژ سریع پشتیبانی
-                    میکند. مدت‌زمان شارژ کیس شارژ 1.5 ساعت و ایربادزها نیز 1ساعت
-                    است. این ایربادز با داشتن پوشش نانو ، حتی در صورت عرق کردن
-                    پس از یک تمرین سخت ، در برابر آب مقاومت می کند ، که گزینه ای
-                    ایده آل برای تمرینات سخت و عرق آور است. کنترل عملکردهای LT7
-                    نیز از طریق کنترلرهای لمسی روی هر ایربادز صورت می‌گیرد.شما
-                    به راحتی با لمس ایربادزها میتوانید پخش موسیقی را فعال یا
-                    غیرفعال کنید.
-                  </ReadMoreText>
+                 
+                   {
+                    'introduction' in product &&  <ReadMoreText>{product.introduction[0]}</ReadMoreText>
+                   }
+                  
                 </EB_BodyOfProperty>
               </EB_BodyOfPropertyBox>
             </EB_PropertyItemBox>
@@ -712,7 +686,7 @@ export default function Product() {
         </EB_PropertyBox>
         {/* introduction */}
 
-        <EB_PropertyBox>
+        <EB_PropertyBox id="property-box">
           <Waypoint
             onPositionChange={(e) => {
               if(e.currentPosition != "below"){
@@ -743,19 +717,19 @@ export default function Product() {
                     مشخصات
                   </Typography>
                 </div>
-                <TableContainer sx={{ marginLeft: "15rem" }}>
-                  <ReadMoreProperty/>
-                </TableContainer>
+                    {"property" in product  &&<ReadMoreProperty>{product?.property}</ReadMoreProperty>}
+                 
+                
               </EB_BodyOfPropertyBox>
             </EB_PropertyItemBox>
           </Waypoint>
         </EB_PropertyBox>
 
-        <CommentBox container>
-          <Grid item md={3} sm={12}>
+        <CommentBox  container >
+          <Grid item lg={3} md={3} sm={12}>
             <CB_TitleBox>
-              <Waypoint onLeave={() => {}} />
-              <Typography className="font-weight-bold mb-3" variant="h6">
+              <Waypoint  />
+              <Typography id="viewpoint-box" className="font-weight-bold mb-3" variant="h6">
                 امتیاز و دیدگاه کاربران
               </Typography>
               <div
@@ -785,7 +759,7 @@ export default function Product() {
               </MyButton>
             </CB_ScoreAndSortBox>
           </Grid>
-          <Grid className="mt-5" item md={9} sm={12}>
+          <Grid className="mt-5"  item lg={9} md={9} sm={12}>
             {[1,2,3].map((comment,index)=>{
               
               return(

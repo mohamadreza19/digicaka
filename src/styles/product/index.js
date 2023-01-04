@@ -7,6 +7,7 @@ import {
   Dialog,
   useScrollTrigger,
 } from "@mui/material";
+import { Link } from "react-scroll";
 import { DiscountBox } from "../appmain";
 
 export const RootContiner = styled(Box)(() => ({
@@ -222,14 +223,19 @@ export const EB_TitleBox = (props) => {
         padding: "10px 0",
       }}
     >
-      {["معرفی", "مشخصات", "دیدگاه"].map((list, index) => {
+      {[
+        ["معرفی","introduction-box"], 
+        ["مشخصات","property-box"],
+         ["دیدگاه","viewpoint-box"]
+      
+      ].map((list, index) => {
         return (
           <EB_TitleItemBox
             isselected={index == indexOfTitle ? "true" : "false"}
             key={index}
             variant="body1"
           >
-            <EB_Title variant="body1">{list}</EB_Title>
+            <EB_Title variant="body1"><Link to={list[1]} smooth={true} offset={-25}>{list[0]}</Link></EB_Title>
           </EB_TitleItemBox>
         );
       })}
@@ -249,6 +255,10 @@ export const EB_TitleItemBox = styled(Box)(({ isselected }) => ({
   height: "24px",
   minWidth: "60px",
   minHeight: "24px",
+  transitionDuration:'0.5',
+  transitionProperty:'border-bottom',
+  
+  
 }));
 export const EB_Title = styled(Typography)(() => ({}));
 //EB_PropertyBox

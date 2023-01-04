@@ -5,7 +5,7 @@ import { useImmer } from "use-immer";
 export const ReadMoreText = ({ children }) => {
   const [isReadMoreShown, setIsReadMoreShown] = useImmer(false);
 
-  if (typeof children === "string") {
+  if (typeof children === "string" && children.length > 0) {
     return (
       <>
         {isReadMoreShown ? children : children.substr(0, 500).concat(" ...")}
