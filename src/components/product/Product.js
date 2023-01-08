@@ -12,11 +12,14 @@ import {
   Info,
   MoreHoriz,
   Notifications,
+  Reply,
   Share,
   Star,
   Store,
   StoreMallDirectory,
   StoreSharp,
+  ThumbDown,
+  ThumbUp,
   ThumbUpOffAlt,
 } from "@mui/icons-material";
 
@@ -641,12 +644,9 @@ export default function Product() {
         </InfoProduct>
       </Grid>
       <EndBox>
-        <Waypoint
-          onLeave={() => {
-            setOnLeave_EB_TitleBox((draft) => true);
-          }}
-          onEnter={() => setOnLeave_EB_TitleBox((draft) => false)}
-        />
+        <Waypoint onEnter={(e)=>{
+            setOnLeave_EB_TitleBox(true)
+        }}/>
         <EB_TitleBox
           className="border-bottom"
           onLeaveArea={onLeave_EB_TitleBox}
@@ -655,17 +655,7 @@ export default function Product() {
 
         {/* introduction */}
         <EB_PropertyBox id="introduction-box">
-          <Waypoint
-            onPositionChange={(e) => {
-              setIndexOfTitle(0);
-            }}
-            onLeave={(e) => {
-              console.log(e.currentPosition)
-              if (e.currentPosition == "above") {
-                setIndexOfTitle(1);
-              }
-            }}
-          >
+         
             <EB_PropertyItemBox>
               <EB_TitleOfPropertyBox>
                 <Typography className=" font-weight-bold" variant="h6">
@@ -682,28 +672,20 @@ export default function Product() {
                 </EB_BodyOfProperty>
               </EB_BodyOfPropertyBox>
             </EB_PropertyItemBox>
-          </Waypoint>
+          
         </EB_PropertyBox>
+        <Waypoint onPositionChange={(e)=>{
+            if(e.currentPosition=="above" && e.previousPosition =="inside"){
+              setIndexOfTitle(1)
+            }
+            if(e.currentPosition=="inside" && e.previousPosition =="above"){
+              setIndexOfTitle(0)
+            }
+        }}/>
         {/* introduction */}
 
         <EB_PropertyBox id="property-box">
-          <Waypoint
-            onPositionChange={(e) => {
-              if(e.currentPosition != "below"){
-                setIndexOfTitle(1);
-                
-              }
-              // setIndexOfTitle(1);
-            }}
-            onLeave={(e) => {
-              if (e.currentPosition == "above" ) {
-              
-                setIndexOfTitle(2);
-              }
-
-             
-            }}
-          >
+          
             <EB_PropertyItemBox>
               <EB_TitleOfPropertyBox>
                 <Typography className="font-weight-bold" variant="h6">
@@ -722,10 +704,18 @@ export default function Product() {
                 
               </EB_BodyOfPropertyBox>
             </EB_PropertyItemBox>
-          </Waypoint>
+          
         </EB_PropertyBox>
-
+        <Waypoint onPositionChange={(e)=>{
+            if(e.currentPosition=="above" && e.previousPosition =="inside"){
+              setIndexOfTitle(2)
+            }
+            if(e.currentPosition=="inside" && e.previousPosition =="above"){
+              setIndexOfTitle(1)
+            }
+        }}/>
         <CommentBox  container >
+          {/* <Waypoint onEnter={()=>setIndexOfTitle(2)}/> */}
           <Grid item lg={3} md={3} sm={12}>
             <CB_TitleBox>
               <Waypoint  />
@@ -760,7 +750,7 @@ export default function Product() {
             </CB_ScoreAndSortBox>
           </Grid>
           <Grid className="mt-5"  item lg={9} md={9} sm={12}>
-            {[1,2,3].map((comment,index)=>{
+            {[1,2,3,4].map((comment,index)=>{
               
               return(
             <div key={index} className={`w-90 mx-auto d-flex flex-column justify-content-center pb-4 ${index !==0 ? 'mt-4':' '} border-bottom`}>
@@ -787,6 +777,51 @@ export default function Product() {
                       <Typography variant="body1">
                       برای نوجوانان عالیه
                       </Typography>
+                    </section>
+                    <section className="mt-4 border-bottom_v2  w-100 pb-2 ms-5 d-flex flex-column">
+                      {
+                        //replayBox
+                        [1,2,3,4].map((item,index)=>{
+                          return(
+                            <div className="d-flex  flex-column w-100" key={index}>
+                            <article id="row1" className="d-flex ">
+                              <Typography variant="caption">
+                                پاسخ
+                              </Typography>
+                              <Typography className="ms-3" variant="body1">
+                                اره خوبه 
+                              </Typography>
+                            </article>
+                            <article id="row2" className="d-flex"  style={{
+                              marginRight:'2.5rem'
+                            }}>
+                              
+                              <div id="col-1">
+                              <Typography className="text-muted " variant="caption">
+                              محمدرضا محسنی زاده
+                              </Typography>
+                              </div>
+                              <div id="col-2" className="ms-auto d-flex mt-2" >
+                             <Typography className="text-muted me-5" variant="button">
+                              ایا این پاسخ کافی بود ؟
+                             </Typography>
+                             <div id="action-buttons" className="d-flex">
+                                <span className="d-flex align-items-center"> 
+                                 <PersionNumber_v2>0</PersionNumber_v2>
+                                <ThumbUp className="ms-2 cur-pointer" fontSize="small"/>
+                                </span>
+                                <span className="d-flex align-items-center ms-2"> 
+                                 <PersionNumber_v2>0</PersionNumber_v2>
+                                <ThumbDown className="ms-2 cur-pointer" fontSize="small"/>
+                                </span>
+                             </div>
+                              </div>
+                            </article>
+                        </div>
+                          )
+                        })
+                      }
+                      
                     </section>
               </div>
              

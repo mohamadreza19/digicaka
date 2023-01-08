@@ -104,6 +104,9 @@ svg {
 .mt-4rem {
   margin-top: 4rem;
 }
+.ms-6 {
+  margin-right: 3.5rem;
+}
 .w-90 {
   width: 90%;
 }
