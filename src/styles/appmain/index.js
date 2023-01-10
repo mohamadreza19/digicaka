@@ -191,7 +191,7 @@ export const RightArrowBox = styled(Box)(() => ({
 export const LeftArrowBox = styled(Box)(() => ({
   cursor: "pointer",
   top: "20%",
-  left: "96.5%",
+  left: "95.5%",
   position: "absolute",
   width: "40px",
   height: "40px",

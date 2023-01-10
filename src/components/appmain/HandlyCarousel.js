@@ -145,9 +145,17 @@ export function HandllyCarousel() {
         <HandllyItemsBox className="handlly-item">
           <Swiper
             spaceBetween={0}
-            slidesPerView={6}
+            slidesPerView={6.5}
             modules={[Navigation, FreeMode]}
-            freeMode={true}
+            freeMode={{
+              minimumVelocity:0.01,
+              momentum:true,
+              momentumBounce:false,
+              momentumBounceRatio:0.5,
+              momentumRatio:0.5,
+              momentumVelocityRatio:0.5,
+              sticky:true
+            }}
             // navigation={true}
             className="direction-rlt"
             onBeforeInit={(swiper) => {
@@ -167,10 +175,10 @@ export function HandllyCarousel() {
               {
                 576: {
                   // width: 576,
-                  slidesPerView: 4,
+                  slidesPerView: 4.5,
                 },
                 1290:{
-                  slidesPerView:6
+                  slidesPerView:5.5
                 }
               }
             }

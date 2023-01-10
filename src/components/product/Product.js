@@ -674,7 +674,9 @@ export default function Product() {
             </EB_PropertyItemBox>
           
         </EB_PropertyBox>
-        <Waypoint onPositionChange={(e)=>{
+        <Waypoint
+       topOffset={40}
+         onPositionChange={(e)=>{
             if(e.currentPosition=="above" && e.previousPosition =="inside"){
               setIndexOfTitle(1)
             }
@@ -706,7 +708,12 @@ export default function Product() {
             </EB_PropertyItemBox>
           
         </EB_PropertyBox>
-        <Waypoint onPositionChange={(e)=>{
+
+        <Waypoint 
+        //  bottomOffset={-500}
+        topOffset={40}
+        onPositionChange={(e)=>{
+          console.log(e)
             if(e.currentPosition=="above" && e.previousPosition =="inside"){
               setIndexOfTitle(2)
             }
@@ -718,7 +725,7 @@ export default function Product() {
           {/* <Waypoint onEnter={()=>setIndexOfTitle(2)}/> */}
           <Grid item lg={3} md={3} sm={12}>
             <CB_TitleBox>
-              <Waypoint  />
+              
               <Typography id="viewpoint-box" className="font-weight-bold mb-3" variant="h6">
                 امتیاز و دیدگاه کاربران
               </Typography>
